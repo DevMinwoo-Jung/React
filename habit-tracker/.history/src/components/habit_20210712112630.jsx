@@ -23,13 +23,11 @@ class Habit extends Component {
     // state를 바꿔준다음에 사라지기 때문이다!
   }
   render() {
-    // console.log(this.props); habits로부터 받아온 props를 conole로 찍을 수 있다
-    // const habitName = this.props.habit.name 이렇게 하지 말고
-    const {name, count} = this.props.habit; // 단 habits에서 사용한 변수명과 같아야한다!
+    console.log(this.props[0]);
     return (
     <li className="habit">
-      <span className="habit-name">{name}</span>
-      <span className="habit-count">{count}</span>
+      <span className="habit-name">Reading </span>
+      <span className="habit-count">{this.state.count}</span>
       <button className="habit-button habit-increase" onClick={this.handleIncrement}>
         <i className="fas fa-plus-square"></i> 
       </button>

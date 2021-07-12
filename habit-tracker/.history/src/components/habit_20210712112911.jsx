@@ -28,8 +28,8 @@ class Habit extends Component {
     const {name, count} = this.props.habit; // 단 habits에서 사용한 변수명과 같아야한다!
     return (
     <li className="habit">
-      <span className="habit-name">{name}</span>
-      <span className="habit-count">{count}</span>
+      <span className="habit-name">Reading </span>
+      <span className="habit-count">{this.state.count}</span>
       <button className="habit-button habit-increase" onClick={this.handleIncrement}>
         <i className="fas fa-plus-square"></i> 
       </button>
