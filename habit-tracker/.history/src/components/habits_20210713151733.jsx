@@ -44,6 +44,7 @@ class Habits extends Component {
 
   render() {
     return (
+      <>
       <ul>
         {
 
@@ -54,6 +55,7 @@ class Habits extends Component {
             // 이렇게 함으로 habit.jsx에서 habits에 관련된 것들을 쓸 수 있다!
         }
       </ul>
+      </>
     );
   }
 }

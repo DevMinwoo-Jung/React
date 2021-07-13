@@ -4,11 +4,6 @@ button {
   cursor: pointer;
 }
 
-ul {
-  margin: 0 0 0 0px;
-  padding-left: 20px;
-}
-
 .habit {
   font-size: 2.5rem;
   padding: 0.5em;
@@ -86,19 +81,7 @@ p {
 }
 
 .input__habit {
-  border: 2px solid green;
+  border: 1px solid yellowgreen;
   width: 40%;
-  height: 70px;
-  margin: 20px 0 0 20px;
-  font-size: 50px;
-}
-
-.add__habit {
-  border: 2px solid green;
-  width: 10%;
-  height: 70px;
-  margin: 20px 0 0 20px;
-  font-size: 50px;
-  color: white;
-  background-color: green;
+  height: 100px;
 }

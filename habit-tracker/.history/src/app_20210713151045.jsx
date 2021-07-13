@@ -24,9 +24,7 @@ class App extends Component {
         <button className="add__habit">Add Habit</button>
       </div>
       {
-        this.state.habits.map(habit => (
-          <Habits key={habit.id} habit={habit}/>
-        ))
+         <Habits key={habit.id} habit={habit}/>
       }
       </>
     );

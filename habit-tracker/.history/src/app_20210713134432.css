@@ -4,11 +4,6 @@ button {
   cursor: pointer;
 }
 
-ul {
-  margin: 0 0 0 0px;
-  padding-left: 20px;
-}
-
 .habit {
   font-size: 2.5rem;
   padding: 0.5em;
@@ -51,54 +46,11 @@ ul {
 
 .navbar {
   width: 100%;
-  border: 1px solid beige;
-  height: 100px;
-  background-color: beige;
-}
-
-.navbar {
-  display: flex;
-}
-
-.navbar > h1,
-p {
-  font-size: 40px;
-  margin: 25px 0 25px 30px;
-}
-
-.fa-leanpub {
-  font-size: 40px;
-  margin: 35px 0 25px 30px;
-  color: yellowgreen;
-}
-
-.total__Count {
   border: 1px solid yellowgreen;
-  border-radius: 30%;
+  height: 100px;
   background-color: yellowgreen;
-  color: white;
-  width: 40px;
+}
+
+.navbar > h1 {
   text-align: center;
-  font-size: 35px;
-}
-
-.habit__box {
-}
-
-.input__habit {
-  border: 2px solid green;
-  width: 40%;
-  height: 70px;
-  margin: 20px 0 0 20px;
-  font-size: 50px;
-}
-
-.add__habit {
-  border: 2px solid green;
-  width: 10%;
-  height: 70px;
-  margin: 20px 0 0 20px;
-  font-size: 50px;
-  color: white;
-  background-color: green;
 }

@@ -3,13 +3,6 @@ import './app.css';
 import Habits from './components/habits';
 
 class App extends Component {
-  state = {
-    habits: [
-      {id: 1, name: 'Reading', count: 0},
-      {id: 2, name: 'Coding', count: 0},
-      {id: 3, name: 'Gym', count: 0},
-    ],
-  };
 
   render(){
     return(
@@ -23,11 +16,7 @@ class App extends Component {
         <input type="text" className="input__habit" />
         <button className="add__habit">Add Habit</button>
       </div>
-      {
-        this.state.habits.map(habit => (
-          <Habits key={habit.id} habit={habit}/>
-        ))
-      }
+      <Habits/>
       </>
     );
   }

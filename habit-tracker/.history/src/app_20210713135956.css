@@ -4,11 +4,6 @@ button {
   cursor: pointer;
 }
 
-ul {
-  margin: 0 0 0 0px;
-  padding-left: 20px;
-}
-
 .habit {
   font-size: 2.5rem;
   padding: 0.5em;
@@ -73,32 +68,7 @@ p {
 }
 
 .total__Count {
-  border: 1px solid yellowgreen;
-  border-radius: 30%;
-  background-color: yellowgreen;
-  color: white;
-  width: 40px;
-  text-align: center;
-  font-size: 35px;
-}
-
-.habit__box {
-}
-
-.input__habit {
-  border: 2px solid green;
-  width: 40%;
-  height: 70px;
-  margin: 20px 0 0 20px;
-  font-size: 50px;
-}
-
-.add__habit {
-  border: 2px solid green;
-  width: 10%;
-  height: 70px;
-  margin: 20px 0 0 20px;
-  font-size: 50px;
-  color: white;
-  background-color: green;
+  border: 1px solid white;
+  border-radius: 50%;
+  background-color: white;
 }

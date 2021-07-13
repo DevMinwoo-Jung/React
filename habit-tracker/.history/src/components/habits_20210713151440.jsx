@@ -4,11 +4,11 @@ import Habit from './habit';
 class Habits extends Component {
 
   handleIncrement = (habit) => {
-    const habits = [...Object.entries(this.props.habit)];
+    const habits = [...this.state.habits];
     // ...은 spared문법 habits 를 복사한다
     const index = habits.indexOf(habit);
     habits[index].count ++;
-    this.setState(this.props);
+    this.setState(this.state);
     // 근데 이것도 state를 직접적으로 변경하는것과 같다..
     // 그러면 새로운 state object를 만들어줘야한다
     this.setState({habits : habits});
@@ -44,6 +44,10 @@ class Habits extends Component {
 
   render() {
     return (
+      <>
+      {console.log(Object.entries(this.props.habit))
+       
+      }
       <ul>
         {
 
@@ -54,6 +58,7 @@ class Habits extends Component {
             // 이렇게 함으로 habit.jsx에서 habits에 관련된 것들을 쓸 수 있다!
         }
       </ul>
+      </>
     );
   }
 }
