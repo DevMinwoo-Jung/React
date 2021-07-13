@@ -4,16 +4,27 @@ class Habit extends Component {
 
 
   handleIncrement = (habit) => {
-   this.props.onIncrement(this.props.habit);
-   console.log(this.props.habit);
+    // state obj 안에 있는 count 증가 후 state 업데이트
+    // state를 업데이트 할때는 꼭 setState를 호출해야함!
+    // this.state.count += 1 <- 요거 안됨;
+    // this.setState({count: this.state.count + 1});
+    alert(`핸들 ${habit.target}`);
   }
 
   handleDecrement = (habit) => {
-    this.props.onDecrement(this.props.habit);
+    // if(this.state.count > 0){
+    // this.setState({count: this.state.count - 1});
+    // } 
+    // 위는 내코드 밑은 강의 코드
+    //const count = this.state.count - 1;
+    // this.setState({count: count < 0 ? 0 : count})
+    // 여기서 count를 const로 선언할 수 있는거는 handleDerement가 호출되면 count 변수 초기화 후
+    // state를 바꿔준다음에 사라지기 때문이다!
+    alert(`핸들 ${habit.target}`);
   }
 
   handleDlete = (habit) => {
-    this.props.onDelete(this.props.habit);
+    alert(`핸들 ${habit.target}`);
 
   }
   render() {

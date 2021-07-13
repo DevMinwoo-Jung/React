@@ -27,25 +27,19 @@ class Habits extends Component {
   handleDecrement = (habit) => {
     const habits = [...this.state.habits];
     const index = habits.indexOf(habit);
-    const count = habits[index].count - 1;
-    habits[index].count = count < 0 ? 0 : count; // 이것도 구리다고...?
-    this.setState({habits});
-    // if(habits[index].count > 0){
-    // habits[index].count--;
-    // this.setState({habits : habits});
-    // } else {
-    //   return;
-    // }
-
+    if(habits[index].count > 0){
+    habits[index].count--;
+    this.setState({habits : habits});
+    } else {
+      return;
+    }
   };
   
   handleDlete = (habit) => {
-    // 이건 내답..
-    // const habits = [...this.state.habits];
-    // const index = habits.indexOf(habit);
-    // habits.splice(index, 1);
-    // this.setState({habits});
-    const habits = this.state.habits.filter(item => item.id !== habit.id);
+    const habits = [...this.state.habits];
+    const index = habits.indexOf(habit);
+    console.log(index);
+    habits.splice(0, index);
     this.setState({habits});
   };
 

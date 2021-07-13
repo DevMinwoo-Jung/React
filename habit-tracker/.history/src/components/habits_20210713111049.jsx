@@ -40,12 +40,10 @@ class Habits extends Component {
   };
   
   handleDlete = (habit) => {
-    // 이건 내답..
-    // const habits = [...this.state.habits];
-    // const index = habits.indexOf(habit);
-    // habits.splice(index, 1);
-    // this.setState({habits});
-    const habits = this.state.habits.filter(item => item.id !== habit.id);
+    const habits = [...this.state.habits];
+    const index = habits.indexOf(habit);
+    console.log(index);
+    habits.splice(index, 1);
     this.setState({habits});
   };
 
