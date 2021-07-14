@@ -5,7 +5,6 @@ class Habit extends Component {
 
   handleIncrement = (habit) => {
    this.props.onIncrement(this.props.habit);
-   console.log(habit);
   }
 
   handleDecrement = (habit) => {
@@ -19,7 +18,6 @@ class Habit extends Component {
 
   totalCountPlus = (habit) => {
     this.props.onTotalPlus(this.props.habit);
-    console.log(habit);
    }
 
   render() {
@@ -30,7 +28,7 @@ class Habit extends Component {
     <li className="habit">
       <span className="habit-name">{name}</span>
       <span className="habit-count">{count}</span>
-      <button className="habit-button habit-increase" onClick={() => {this.handleIncrement(); this.totalCountPlus()}}>
+      <button className="habit-button habit-increase" onClick={this.handleIncrement}>
         <i className="fas fa-plus-square"></i> 
       </button>
       <button className="habit-button habit-decrease" onClick={this.handleDecrement}>

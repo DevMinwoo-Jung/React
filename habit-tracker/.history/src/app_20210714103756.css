@@ -82,6 +82,9 @@ p {
   font-size: 35px;
 }
 
+.habit__box {
+}
+
 .input__habit {
   border: 2px solid green;
   width: 40%;

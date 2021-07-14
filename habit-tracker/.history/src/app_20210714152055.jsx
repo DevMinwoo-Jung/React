@@ -19,7 +19,7 @@ class App extends Component {
     this.setState(this.state);
     this.setState({habits : habits});
     this.setState({totalCount : totalCount});
-    console.log(habit);
+    console.log(`habit왜 두번 출력? ${habit}`)
   }
 
   totalCountMinus = (habit) => {

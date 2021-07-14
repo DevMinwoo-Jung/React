@@ -42,7 +42,6 @@ class App extends Component {
   }
 
   handleIncrement = (habit) => {
-    console.log(habit);
     const habits = [...this.state.habits];
     // ...은 spared문법 habits 를 복사한다
     const index = habits.indexOf(habit);

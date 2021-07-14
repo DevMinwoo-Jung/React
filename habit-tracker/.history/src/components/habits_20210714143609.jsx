@@ -5,7 +5,6 @@ class Habits extends Component {
 
   handleIncrement = (habit) => {
     this.props.onIncrement(this.props.habit);
-    console.log(habit);
     
    }
  
@@ -18,11 +17,6 @@ class Habits extends Component {
  
    }
 
-   totalCountPlus = (habit) => {
-    this.props.onTotalPlus(this.props.habit);
-    console.log(habit);
-   }
-
   render() {
     return (
       <ul>
@@ -31,7 +25,7 @@ class Habits extends Component {
             onIncrement={this.handleIncrement} 
             onDecrement={this.handleDecrement} 
             onDelete={this.handleDlete}
-            onTotalPlus={this.totalCountPlus}/>
+            onPlus={this.totalCountPlus}/>
             // 이렇게 함으로 habit.jsx에서 habits에 관련된 것들을 쓸 수 있다!
         }
       </ul>

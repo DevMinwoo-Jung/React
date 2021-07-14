@@ -13,13 +13,13 @@ class App extends Component {
   };
 
   totalCountPlus = (habit) => {
+
     const habits = [...this.state.habits];
     let totalCount = this.state.totalCount;
     totalCount = totalCount + 1;
     this.setState(this.state);
     this.setState({habits : habits});
     this.setState({totalCount : totalCount});
-    console.log(habit);
   }
 
   totalCountMinus = (habit) => {

@@ -5,7 +5,6 @@ class Habits extends Component {
 
   handleIncrement = (habit) => {
     this.props.onIncrement(this.props.habit);
-    console.log(habit);
     
    }
  
@@ -16,11 +15,6 @@ class Habits extends Component {
    handleDlete = (habit) => {
      this.props.onDelete(this.props.habit);
  
-   }
-
-   totalCountPlus = (habit) => {
-    this.props.onTotalPlus(this.props.habit);
-    console.log(habit);
    }
 
   render() {

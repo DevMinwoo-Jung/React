@@ -19,7 +19,6 @@ class App extends Component {
     this.setState(this.state);
     this.setState({habits : habits});
     this.setState({totalCount : totalCount});
-    console.log(habit);
   }
 
   totalCountMinus = (habit) => {
@@ -42,7 +41,6 @@ class App extends Component {
   }
 
   handleIncrement = (habit) => {
-    console.log(habit);
     const habits = [...this.state.habits];
     // ...은 spared문법 habits 를 복사한다
     const index = habits.indexOf(habit);
@@ -80,7 +78,7 @@ class App extends Component {
     // this.setState({habits});
     const habits = this.state.habits.filter(item => item.id !== habit.id);
     this.setState({habits});
-    this.totalCountMinusAll();
+    this.totalCountMinus();
   };
 
   render(){

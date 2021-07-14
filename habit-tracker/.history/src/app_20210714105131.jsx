@@ -8,41 +8,15 @@ class App extends Component {
       {id: 1, name: 'Reading', count: 0},
       {id: 2, name: 'Coding', count: 0},
       {id: 3, name: 'Gym', count: 0},
+      totalCount = 0,
     ],
-    totalCount: 0,
   };
 
-  totalCountPlus = (habit) => {
+  totalCount = (habiit) => {
     const habits = [...this.state.habits];
-    let totalCount = this.state.totalCount;
-    totalCount = totalCount + 1;
-    this.setState(this.state);
-    this.setState({habits : habits});
-    this.setState({totalCount : totalCount});
-    console.log(habit);
-  }
-
-  totalCountMinus = (habit) => {
-    const habits = [...this.state.habits];
-    let totalCount = this.state.totalCount - 1;
-    totalCount = totalCount < 0 ? 0 : totalCount;
-    this.setState(this.state);
-    this.setState({habits : habits});
-    this.setState({totalCount : totalCount});
-    console.log(habit);
-  }
-
-  totalCountMinusAll = (habit) => {
-    const habits = [...this.state.habits];
-    let totalCount = this.state.totalCount;
-    totalCount = totalCount - habit.count;
-    this.setState(this.state);
-    this.setState({habits : habits});
-    this.setState({totalCount : totalCount});
   }
 
   handleIncrement = (habit) => {
-    console.log(habit);
     const habits = [...this.state.habits];
     // ...은 spared문법 habits 를 복사한다
     const index = habits.indexOf(habit);
@@ -53,7 +27,7 @@ class App extends Component {
     this.setState({habits : habits});
     // 근데 key 와 value가 동일하면 하나로 생략 가능
     // this.setState({habits});
-    this.totalCountPlus();
+
   };
 
   handleDecrement = (habit) => {
@@ -68,8 +42,9 @@ class App extends Component {
     // } else {
     //   return;
     // }
-
-    this.totalCountMinus();
+    alert("나를 탄다요!");
+    console.log(habits);
+    console.log(index);
   };    
   
   handleDlete = (habit) => {
@@ -80,17 +55,15 @@ class App extends Component {
     // this.setState({habits});
     const habits = this.state.habits.filter(item => item.id !== habit.id);
     this.setState({habits});
-    this.totalCountMinusAll();
   };
 
   render(){
-    const totalCount = this.state.totalCount;
     return(
       <>
       <div className="navbar">
         <i className="fab fa-leanpub">
         </i><h1>Habit Tracker</h1>
-        <p className="total__Count">{totalCount}</p>
+        <p className="total__Count">0</p>
       </div>
       <div className="habit__box">
         <input type="text" className="input__habit" />
@@ -101,8 +74,7 @@ class App extends Component {
           <Habits key={habit.id} habit={habit}
           onIncrement={this.handleIncrement} 
           onDecrement={this.handleDecrement} 
-          onDelete={this.handleDlete}
-          onTotalPlus={this.totalCountPlus}/>
+          onDelete={this.handleDlete}/>
         ))
       }
       </>

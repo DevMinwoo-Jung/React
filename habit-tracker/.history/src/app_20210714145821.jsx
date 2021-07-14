@@ -15,11 +15,12 @@ class App extends Component {
   totalCountPlus = (habit) => {
     const habits = [...this.state.habits];
     let totalCount = this.state.totalCount;
+    //const index = habits.indexOf(habit);
+    console.log(habit);
     totalCount = totalCount + 1;
     this.setState(this.state);
     this.setState({habits : habits});
     this.setState({totalCount : totalCount});
-    console.log(habit);
   }
 
   totalCountMinus = (habit) => {
@@ -29,20 +30,18 @@ class App extends Component {
     this.setState(this.state);
     this.setState({habits : habits});
     this.setState({totalCount : totalCount});
-    console.log(habit);
   }
-
   totalCountMinusAll = (habit) => {
     const habits = [...this.state.habits];
+    // const index = habits.indexOf(habit);
     let totalCount = this.state.totalCount;
-    totalCount = totalCount - habit.count;
+    // totalCount = totalCount - habit.count;
     this.setState(this.state);
     this.setState({habits : habits});
     this.setState({totalCount : totalCount});
   }
 
   handleIncrement = (habit) => {
-    console.log(habit);
     const habits = [...this.state.habits];
     // ...은 spared문법 habits 를 복사한다
     const index = habits.indexOf(habit);
@@ -102,7 +101,8 @@ class App extends Component {
           onIncrement={this.handleIncrement} 
           onDecrement={this.handleDecrement} 
           onDelete={this.handleDlete}
-          onTotalPlus={this.totalCountPlus}/>
+          onPlus={this.totalCountPlus}/>
+
         ))
       }
       </>

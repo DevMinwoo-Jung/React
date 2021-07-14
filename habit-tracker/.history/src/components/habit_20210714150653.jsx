@@ -5,7 +5,6 @@ class Habit extends Component {
 
   handleIncrement = (habit) => {
    this.props.onIncrement(this.props.habit);
-   console.log(habit);
   }
 
   handleDecrement = (habit) => {
@@ -17,11 +16,6 @@ class Habit extends Component {
 
   }
 
-  totalCountPlus = (habit) => {
-    this.props.onTotalPlus(this.props.habit);
-    console.log(habit);
-   }
-
   render() {
     // console.log(this.props); habits로부터 받아온 props를 conole로 찍을 수 있다
     // const habitName = this.props.habit.name 이렇게 하지 말고
@@ -30,7 +24,7 @@ class Habit extends Component {
     <li className="habit">
       <span className="habit-name">{name}</span>
       <span className="habit-count">{count}</span>
-      <button className="habit-button habit-increase" onClick={() => {this.handleIncrement(); this.totalCountPlus()}}>
+      <button className="habit-button habit-increase" onClick={this.handleIncrement} onClick={this.totalCountPlus}>
         <i className="fas fa-plus-square"></i> 
       </button>
       <button className="habit-button habit-decrease" onClick={this.handleDecrement}>
