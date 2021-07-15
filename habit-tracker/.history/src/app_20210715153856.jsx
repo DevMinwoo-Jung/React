@@ -77,9 +77,9 @@ class App extends Component {
   }
 
   addHabitsByDown = (event) => {
-    if((event.key === "Enter")){
-      this.addHabitsByClick();
-      document.querySelector('.input__habit').value = '';
+    console.log(event.code);
+    if((event.key = 'Enter' || 'NumpadEnter')){
+      console.log(event.key);
     } else {
       return;
     }

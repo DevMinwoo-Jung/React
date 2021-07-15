@@ -77,12 +77,12 @@ class App extends Component {
   }
 
   addHabitsByDown = (event) => {
-    if((event.key === "Enter")){
-      this.addHabitsByClick();
-      document.querySelector('.input__habit').value = '';
-    } else {
-      return;
-    }
+    console.log(event);
+    // if((event.code = 'Enter') || (event.code = 'NumpadEnter')){
+    //   alert("잘온다!");
+    // } else {
+    //   return;
+    // }
   }
 
   render(){

@@ -77,9 +77,9 @@ class App extends Component {
   }
 
   addHabitsByDown = (event) => {
-    if((event.key === "Enter")){
-      this.addHabitsByClick();
-      document.querySelector('.input__habit').value = '';
+    console.log(event.code);
+    if((event.code = 'Enter') || (event.code = 'NumpadEnter')){
+      alert("잘온다!");
     } else {
       return;
     }

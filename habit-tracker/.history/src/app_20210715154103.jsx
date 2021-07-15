@@ -79,7 +79,7 @@ class App extends Component {
   addHabitsByDown = (event) => {
     if((event.key === "Enter")){
       this.addHabitsByClick();
-      document.querySelector('.input__habit').value = '';
+      document.querySelector('.input__habit').value = ''
     } else {
       return;
     }
