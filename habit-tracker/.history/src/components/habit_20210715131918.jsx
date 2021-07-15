@@ -5,6 +5,7 @@ class Habit extends Component {
 
   handleIncrement = (habit) => {
    this.props.onIncrement(this.props.habit);
+   console.log(habit);
   }
 
   handleDecrement = (habit) => {
@@ -15,6 +16,11 @@ class Habit extends Component {
     this.props.onDelete(this.props.habit);
 
   }
+
+  totalCountPlus = (habit) => {
+    this.props.onTotalPlus(this.props.habit);
+    console.log(habit);
+   }
 
   render() {
     // console.log(this.props); habits로부터 받아온 props를 conole로 찍을 수 있다

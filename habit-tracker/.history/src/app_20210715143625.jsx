@@ -83,7 +83,7 @@ class App extends Component {
           onDelete={this.handleDlete}/>
         ))
       }
-      <button className="reset__habit">Reset All</button>
+      <button className="rest__habit">Reset All</button>
       </>
     );
   }

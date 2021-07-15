@@ -16,6 +16,10 @@ class Habit extends Component {
 
   }
 
+  totalCountPlus = (habit) => {
+    this.props.onTotalPlus(this.props.habit);
+   }
+
   render() {
     // console.log(this.props); habits로부터 받아온 props를 conole로 찍을 수 있다
     // const habitName = this.props.habit.name 이렇게 하지 말고

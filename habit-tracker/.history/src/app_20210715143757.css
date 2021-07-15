@@ -102,10 +102,10 @@ p {
 
 .reset__habit {
   border: 2px solid green;
-  width: 15%;
-  height: 50px;
+  width: 20%;
+  height: 70px;
   margin: 20px 0 0 20px;
-  font-size: 30px;
+  font-size: 50px;
   color: white;
   background-color: green;
 }

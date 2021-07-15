@@ -12,6 +12,33 @@ class App extends Component {
     totalCount: 0,
   };
 
+  // totalCountPlus = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   let totalCount = this.state.totalCount;
+  //   totalCount = totalCount + 1;
+  //   this.setState(this.state);
+  //   this.setState({habits : habits});
+  //   this.setState({totalCount : totalCount});
+  //   console.log(habit);
+  // }
+
+  // totalCountMinus = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   let totalCount = this.state.totalCount - 1;
+  //   totalCount = totalCount < 0 ? 0 : totalCount;
+  //   this.setState(this.state);
+  //   this.setState({habits : habits});
+  //   this.setState({totalCount : totalCount});
+  // }
+
+  // totalCountMinusAll = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   let totalCount = this.state.totalCount;
+  //   totalCount = totalCount - habit.count;
+  //   this.setState(this.state);
+  //   this.setState({habits : habits});
+  //   this.setState({totalCount : totalCount});
+  // }
 
   handleIncrement = (habit) => {
 
@@ -34,32 +61,34 @@ class App extends Component {
   handleDecrement = (habit) => {
     const habits = [...this.state.habits];
     const index = habits.indexOf(habit);
-    let totalCount = this.state.totalCount;
-   
-    if(habits[index].count > 0){
-      totalCount--;
-    } else {
-      return;
-    }
-
     const count = habits[index].count - 1;
+    let totalCount = this.state.totalCount;
     habits[index].count = count < 0 ? 0 : count; // 이것도 구리다고...?
     this.setState({habits});
-    this.setState({totalCount});
-    
+    // if(habits[index].count > 0){
+    // habits[index].count--;
+    // this.setState({habits : habits});
+    // } else {
+    //   return;
+    // }
+
+
+    if(habits[index].count < 0){
+      totalCount = totalCount;
+    } else {
+      totalCount--;
+    }
   };    
   
   handleDlete = (habit) => {
     // 이건 내답..
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    let totalCount = this.state.totalCount;
-    totalCount = totalCount - habits[index].count;
-    habits.splice(index, 1);
-
-    // const habits = this.state.habits.filter(item => item.id !== habit.id);
+    // const habits = [...this.state.habits];
+    // const index = habits.indexOf(habit);
+    // habits.splice(index, 1);
+    // this.setState({habits});
+    const habits = this.state.habits.filter(item => item.id !== habit.id);
     this.setState({habits});
-    this.setState({totalCount});
+    this.totalCountMinusAll();
   };
 
   render(){
@@ -83,7 +112,6 @@ class App extends Component {
           onDelete={this.handleDlete}/>
         ))
       }
-      <button className="reset__habit">Reset All</button>
       </>
     );
   }

@@ -12,6 +12,33 @@ class App extends Component {
     totalCount: 0,
   };
 
+  // totalCountPlus = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   let totalCount = this.state.totalCount;
+  //   totalCount = totalCount + 1;
+  //   this.setState(this.state);
+  //   this.setState({habits : habits});
+  //   this.setState({totalCount : totalCount});
+  //   console.log(habit);
+  // }
+
+  // totalCountMinus = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   let totalCount = this.state.totalCount - 1;
+  //   totalCount = totalCount < 0 ? 0 : totalCount;
+  //   this.setState(this.state);
+  //   this.setState({habits : habits});
+  //   this.setState({totalCount : totalCount});
+  // }
+
+  // totalCountMinusAll = (habit) => {
+  //   const habits = [...this.state.habits];
+  //   let totalCount = this.state.totalCount;
+  //   totalCount = totalCount - habit.count;
+  //   this.setState(this.state);
+  //   this.setState({habits : habits});
+  //   this.setState({totalCount : totalCount});
+  // }
 
   handleIncrement = (habit) => {
 
@@ -83,7 +110,6 @@ class App extends Component {
           onDelete={this.handleDlete}/>
         ))
       }
-      <button className="reset__habit">Reset All</button>
       </>
     );
   }

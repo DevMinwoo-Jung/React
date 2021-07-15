@@ -18,6 +18,10 @@ class Habits extends Component {
  
    }
 
+   totalCountPlus = (habit) => {
+    this.props.onTotalPlus(this.props.habit);
+  //  console.log(habit);
+   }
 
   render() {
     return (
