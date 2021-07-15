@@ -95,7 +95,7 @@ class App extends Component {
         <p className="total__Count">{totalCount}</p>
       </div>
       <div className="habit__box">
-        <input type="text" className="input__habit" onKeyDown={this.addHabitsByDown}/>
+        <input type="text" className="input__habit" onKeyUp={this.addHabitsByDown}/>
         <button className="add__habit" onClick={this.addHabitsByClick}>Add Habit</button>
       </div>
       {

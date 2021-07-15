@@ -77,7 +77,7 @@ class App extends Component {
   }
 
   addHabitsByDown = (event) => {
-    if(event.keyCode = 13){
+    if(event.code = 'Enter'){
       this.addHabitsByClick();
       document.querySelector('.input__habit').value = '';
     } else {
@@ -95,7 +95,7 @@ class App extends Component {
         <p className="total__Count">{totalCount}</p>
       </div>
       <div className="habit__box">
-        <input type="text" className="input__habit" onKeyDown={this.addHabitsByDown}/>
+        <input type="text" className="input__habit" onKeyUp={this.addHabitsByDown}/>
         <button className="add__habit" onClick={this.addHabitsByClick}>Add Habit</button>
       </div>
       {

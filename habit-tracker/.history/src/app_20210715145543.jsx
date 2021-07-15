@@ -67,24 +67,6 @@ class App extends Component {
     this.setState({habits})
   }
 
-  addHabitsByClick = () => {
-    let habits = [...this.state.habits];
-    const input = document.querySelector('.input__habit').value;
-    const habit = { id: Math.random()*10, name: input, count: 0};
-    habits.push(habit);
-    this.setState({habits});
-    console.log(input);
-  }
-
-  addHabitsByDown = (event) => {
-    if(event.keyCode = 13){
-      this.addHabitsByClick();
-      document.querySelector('.input__habit').value = '';
-    } else {
-      return;
-    }
-  }
-
   render(){
     const totalCount = this.state.totalCount;
     return(
@@ -95,8 +77,8 @@ class App extends Component {
         <p className="total__Count">{totalCount}</p>
       </div>
       <div className="habit__box">
-        <input type="text" className="input__habit" onKeyDown={this.addHabitsByDown}/>
-        <button className="add__habit" onClick={this.addHabitsByClick}>Add Habit</button>
+        <input type="text" className="input__habit" />
+        <button className="add__habit">Add Habit</button>
       </div>
       {
         this.state.habits.map(habit => (

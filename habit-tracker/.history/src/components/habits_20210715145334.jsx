@@ -18,7 +18,7 @@ class Habits extends Component {
   }
 
   resetHabits = (habit) => {
-    this.props.onDelete(this.props.habit);
+
   }
 
 

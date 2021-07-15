@@ -78,7 +78,10 @@ class App extends Component {
 
   addHabitsByDown = (event) => {
     if(event.keyCode = 13){
-      this.addHabitsByClick();
+      const input = document.querySelector('.input__habit').value;
+      const habit = { id: Math.random()*10, name: input, count: 0};
+      habits.push(habit);
+      this.setState({habits});
       document.querySelector('.input__habit').value = '';
     } else {
       return;

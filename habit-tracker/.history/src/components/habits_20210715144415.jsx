@@ -17,10 +17,6 @@ class Habits extends Component {
 
   }
 
-  resetHabits = (habit) => {
-    this.props.onDelete(this.props.habit);
-  }
-
 
   render() {
     return (
@@ -29,8 +25,7 @@ class Habits extends Component {
             <Habit key={this.props.habit.id} habit={this.props.habit} 
             onIncrement={this.handleIncrement} 
             onDecrement={this.handleDecrement} 
-            onDelete={this.handleDlete}
-            onRest={this.resetHabits}/>
+            onDelete={this.handleDlete}/>
             // 이렇게 함으로 habit.jsx에서 habits에 관련된 것들을 쓸 수 있다!
         }
       </ul>

@@ -70,18 +70,17 @@ class App extends Component {
   addHabitsByClick = () => {
     let habits = [...this.state.habits];
     const input = document.querySelector('.input__habit').value;
+
     const habit = { id: Math.random()*10, name: input, count: 0};
     habits.push(habit);
     this.setState({habits});
     console.log(input);
   }
 
-  addHabitsByDown = (event) => {
-    if(event.keyCode = 13){
+  addHabitsByKepress = (event) => {
+    console.log(event);
+    if(event.code = 'Enter'){
       this.addHabitsByClick();
-      document.querySelector('.input__habit').value = '';
-    } else {
-      return;
     }
   }
 
@@ -95,7 +94,7 @@ class App extends Component {
         <p className="total__Count">{totalCount}</p>
       </div>
       <div className="habit__box">
-        <input type="text" className="input__habit" onKeyDown={this.addHabitsByDown}/>
+        <input type="text" className="input__habit" onKeyPress={this.addHabitsByKepress}/>
         <button className="add__habit" onClick={this.addHabitsByClick}>Add Habit</button>
       </div>
       {
