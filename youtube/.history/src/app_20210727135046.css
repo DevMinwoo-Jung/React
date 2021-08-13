@@ -1,0 +1,79 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.logo {
+  width: 100px;
+  background-color: white;
+  margin: 0 10px 0 10px;
+}
+
+.yt-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.searchBox {
+  width: 700px;
+  border: 1px solid grey;
+  height: 30px;
+  margin: 30px 10px 0 10px;
+  display: flex;
+}
+
+.search {
+  border: none;
+  font-size: 18px;
+  text-align: inherit;
+  width: 100%;
+  line-height: 25px;
+  box-shadow: none;
+}
+
+.searchBtn {
+  color: rgb(143, 143, 143);
+  background-color: rgb(199, 199, 199);
+  width: 50px;
+  text-align: center;
+  padding-top: 2px;
+}
+
+.video-div {
+  width: 1500px;
+  height: 2000px;
+  border: 1px solid black;
+  margin: auto;
+}
+
+.video {
+  display: grid;
+  float: left;
+}
+
+.imgs {
+  display: flex;
+  border: 1px solid black;
+  width: 300px;
+  height: 200px;
+  margin: 20px 20px 0px 20px;
+}
+
+.thumbnails {
+  width: 100%;
+  height: 100%;
+}
+
+.contents {
+  border: 1px solid black;
+  text-align: center;
+  font-size: 16px;
+  width: 300px;
+  height: 100px;
+  margin: 10px 20px 20px 20px;
+}
+
+.content-para {
+  text-align: left;
+}

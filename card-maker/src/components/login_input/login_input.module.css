@@ -1,0 +1,11 @@
+.inputDiv {
+  width: 600px;
+  height: 200px;
+  background-color: white;
+  position: relative;
+  color: black;
+}
+
+.inputDiv > h2 {
+  margin: 0;
+}

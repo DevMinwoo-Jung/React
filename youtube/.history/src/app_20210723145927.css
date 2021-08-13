@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.logo {
+  width: 100px;
+  background-color: white;
+}
+
+.yt-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.searchBox {
+  width: 200px;
+  border: 1px solid grey;
+  height: 40px;
+  margin-top: 10px;
+}

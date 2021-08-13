@@ -1,0 +1,62 @@
+import './app.css';
+import Login from './components/login/login';
+import firebase from 'firebase/app'
+import 'firebase/storage'
+import 'firebase/analytics'
+import 'firebase/auth'
+
+const firebaseConfig = {
+
+};
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
+}
+firebase.analytics();
+
+function googleLogin(){
+const provider = new firebase.auth.GoogleAuthProvider();
+firebase.auth().languageCode = 'kor';
+
+firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+
+    const credential = result.credential;
+    console.log(credential);
+    // console.log(result.user.bc.emailVerified);
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user.bc.emailVerified;
+    console.log(user);
+    return user;
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    console.log(errorCode);
+    const errorMessage = error.message;
+    console.log(errorMessage);
+    // The email of the user's account used.
+    const email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    const credential = error.credential;
+    // ...
+  });
+
+}
+
+
+function App() {
+  return (
+    <>
+    <Login onProvider={googleLogin}/>
+    </>
+  );
+}
+
+export default App;

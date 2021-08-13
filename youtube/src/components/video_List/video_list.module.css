@@ -1,0 +1,12 @@
+.video {
+  display: grid;
+  float: left;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 250ms ease-in;
+  margin-left: 2rem;
+}
+
+.video:hover {
+  transform: scale(1.02);
+}

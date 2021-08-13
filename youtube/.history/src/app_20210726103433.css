@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  margin: auto;
+}
+
+.logo {
+  width: 100px;
+  background-color: white;
+}
+
+.yt-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.searchBox {
+  width: 200px;
+  border: 1px solid grey;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.search {
+  border: none;
+  font-size: 18px;
+  text-align: inherit;
+  width: 100%;
+  line-height: 25px;
+  box-shadow: none;
+}

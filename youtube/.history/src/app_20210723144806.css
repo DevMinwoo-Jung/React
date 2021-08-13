@@ -1,0 +1,15 @@
+.navbar {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.logo {
+  width: 100px;
+  background-color: white;
+}
+
+.yt-logo {
+  width: 100px;
+  height: 100px;
+}
