@@ -1,0 +1,8 @@
+{
+  "name": "React",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/DevMinwoo-Jung/React.git",
+  "author": "Minwoo <applejung312@gmail.com>",
+  "license": "MIT"
+}
