@@ -4,6 +4,7 @@ import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/analytics'
 import 'firebase/auth'
+import CardAndProfile from './components/card_and_profile/card_and_profile';
 
 const firebaseConfig = {
 
@@ -54,7 +55,8 @@ firebase.auth()
 function App() {
   return (
     <>
-    <Login onProvider={googleLogin}/>
+    {/* <Login onProvider={googleLogin}/> */}
+    <CardAndProfile/>
     </>
   );
 }
