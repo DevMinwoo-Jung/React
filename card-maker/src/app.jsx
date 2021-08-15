@@ -1,13 +1,20 @@
 import './app.css';
 import Login from './components/login/login';
+import CardAndProfile from './components/card_and_profile/card_and_profile';
 import firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/analytics'
 import 'firebase/auth'
-import CardAndProfile from './components/card_and_profile/card_and_profile';
+
 
 const firebaseConfig = {
-
+  apiKey: process.env.API_KEY,
+  authDomain: "card-maker-73d7b.firebaseapp.com",
+  projectId: "card-maker-73d7b",
+  storageBucket: "card-maker-73d7b.appspot.com",
+  messagingSenderId: "1090730347699",
+  appId: "1:1090730347699:web:708ab54d542f19919034c6",
+  measurementId: "G-SSKVPJLYJC"
 };
 // Initialize Firebase
 if (!firebase.apps.length) {
