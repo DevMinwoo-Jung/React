@@ -8,7 +8,7 @@ import 'firebase/auth'
 
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: "AIzaSyCW6b1TgN9XGmRofspcUbl5Lo82kkNXM4k",
   authDomain: "card-maker-73d7b.firebaseapp.com",
   projectId: "card-maker-73d7b",
   storageBucket: "card-maker-73d7b.appspot.com",
