@@ -62,7 +62,7 @@ firebase.auth()
 function App() {
   return (
     <>
-    {/* <Login onProvider={googleLogin}/> */}
+    <Login onProvider={googleLogin}/>
     <CardAndProfile/>
     </>
   );
