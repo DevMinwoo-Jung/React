@@ -28,7 +28,7 @@ const handleProvider = () => {
       </Route>    
       <Route path="/cards">
           <CardAndProfile/>
-        </Route>
+      </Route>
       </Switch>
     </BrowserRouter>
     </>

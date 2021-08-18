@@ -1,9 +1,65 @@
-.card {
-  border: 1px solid white;
-  width: 100px;
-  height: 300px;
+:root {
+  --inner-div-border: 0.5px solid black;
 }
 
 .cards {
+  display: block;
+  margin: 50px 20px 30px 50px;
+}
+
+.card {
+  width: 800px;
+  height: 200px;
+  background-color: white;
+  margin: 10px 10px 10px 10px;
+  display: block;
+}
+
+.firstLine {
+  border: var(--inner-div-border);
+  height: 39px;
   display: flex;
+}
+
+.firstLine > span {
+  border: var(--inner-div-border);
+  flex: 1;
+}
+
+.secondLine {
+  border: var(--inner-div-border);
+  height: 39px;
+  display: flex;
+}
+
+.secondLine > span {
+  border: var(--inner-div-border);
+  flex: 1;
+}
+
+.thirdLine {
+  border: var(--inner-div-border);
+  height: 79px;
+  display: flex;
+}
+
+.thirdLine > span {
+  border: var(--inner-div-border);
+  flex: 1;
+}
+
+.fourthLine {
+  border: var(--inner-div-border);
+  height: 39px;
+  display: flex;
+}
+
+.fourthLine > span {
+  border: var(--inner-div-border);
+  flex: 1;
+}
+
+.deleteBtn {
+  width: 50%;
+  height: 100%;
 }

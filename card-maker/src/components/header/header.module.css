@@ -1,0 +1,19 @@
+.topAndBottom {
+  position: relative;
+  background-color: rgb(17, 20, 68);
+  width: 100%;
+  height: 200px;
+}
+
+.logo {
+  width: 70px;
+  height: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+}
+
+.header {
+  color: white;
+}

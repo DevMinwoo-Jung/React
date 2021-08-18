@@ -7,6 +7,7 @@ const CardAddForm = ({onAdd}) => {
   const stateRef =  React.createRef();
   const jobRef =  React.createRef();
   const emailRef =  React.createRef();
+  const etcRef =  React.createRef();
 
 
 const handleAddCard = card =>{
@@ -20,20 +21,41 @@ const onSubmit = (event) => {
   const state = stateRef.current.value;
   const job = jobRef.current.value;
   const email = emailRef.current.value;
+  const etc = etcRef.current.value;
   const id = Date.now();
-  const card = {name, company, state, job, email, id};
+  const card = {name, company, state, job, email, etc, id};
   handleAddCard(card);
+
+  nameRef.current.value = '';
+  companyRef.current.value = '';
+  stateRef.current.value = '';
+  jobRef.current.value = '';
+  emailRef.current.value = '';
+  etcRef.current.value = '';
 
 }
   return (
-    <form onSubmit={onSubmit} className={styles.addForm}>
-        <p>name<input ref={nameRef}/></p>
-        <p>company<input ref={companyRef}/></p>
-        <p>state<input ref={stateRef}/></p>
-        <p>job<input ref={jobRef}/></p>
-        <p>email<input ref={emailRef}/></p>
-        <button>click me!</button>  
-    </form>
+    <div className={styles.inputCards}>
+      <div className={styles.inputCard}>
+        <form onSubmit={onSubmit} className={styles.addForm}>
+          <div className={styles.firstLine}>
+            <input ref={nameRef} placeholder="Name"/>
+            <input ref={companyRef} placeholder="company"/>
+            <input ref={stateRef} placeholder="state"/>
+          </div>
+          <div className={styles.secondLine}>
+            <input ref={jobRef} placeholder="job"/>
+            <input ref={emailRef} placeholder="email"/>
+          </div>  
+          <div className={styles.thirdLine}>
+            <input ref={etcRef} placeholder="etc"/>
+          </div>
+          <div className={styles.fourthLine}>
+            <button className={styles.addBtn}>click me!</button>  
+          </div>  
+        </form>
+      </div>  
+    </div>
   );
 };
 

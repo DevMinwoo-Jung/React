@@ -1,4 +1,71 @@
-.addForm {
-  width: 200px;
+:root {
+  --inner-div-border: 0.5px solid black;
+}
+
+.inputCards {
+  display: block;
+  margin: 50px 20px 30px 50px;
+}
+
+.inputCard {
+  width: 800px;
   height: 200px;
+  background-color: white;
+  margin: 10px 10px 10px 10px;
+  display: block;
+}
+
+.firstLine {
+  border: var(--inner-div-border);
+  height: 39px;
+  display: flex;
+}
+
+.firstLine > input {
+  border: var(--inner-div-border);
+  width: 100%;
+  flex: 1;
+}
+
+.secondLine {
+  border: var(--inner-div-border);
+  height: 39px;
+  display: flex;
+}
+
+.secondLine > input {
+  border: var(--inner-div-border);
+  flex: 1;
+}
+
+.thirdLine {
+  border: var(--inner-div-border);
+  height: 79px;
+  display: flex;
+}
+
+.thirdLine > input {
+  border: var(--inner-div-border);
+  flex: 1;
+}
+
+.fourthLine {
+  border: var(--inner-div-border);
+  height: 39px;
+  display: flex;
+}
+
+.fourthLine > input {
+  border: var(--inner-div-border);
+  flex: 1;
+}
+
+.addBtn {
+  width: 50%;
+  height: 100%;
+}
+
+input {
+  border: none;
+  font-size: 10px;
 }

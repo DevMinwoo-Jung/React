@@ -1,0 +1,30 @@
+.card__section {
+  scroll-behavior: smooth;
+  width: 50%;
+  height: 750px;
+  border: 1px solid black;
+  overflow-y: auto;
+  max-height: 750px;
+  background-color: white;
+  margin: 0px 0px 0px 50px;
+}
+
+.profile__section {
+  scroll-behavior: smooth;
+  width: 50%;
+  height: 750px;
+  border: 1px solid black;
+  overflow-y: auto;
+  max-height: 750px;
+  background-color: white;
+  margin: 0px 50px 0px 0px;
+}
+
+.Card_And_Profile {
+  display: flex;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(17, 20, 68);
+}

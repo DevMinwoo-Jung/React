@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './login_input.module.css'
-import { BrowserRouter, Link, useHistory} from "react-router-dom";
+import { BrowserRouter, useHistory} from "react-router-dom";
 
 const LoginInput = ({onProvider}) => {
   const history = useHistory();
