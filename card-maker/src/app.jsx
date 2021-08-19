@@ -33,7 +33,7 @@ firebase.auth()
     /** @type {firebase.auth.OAuthCredential} */
 
     const credential = result.credential;
-    console.log(credential);
+    console.log(result);
     // console.log(result.user.bc.emailVerified);
     // This gives you a Google Access Token. You can use it to access the Google API.
     const token = credential.accessToken;
@@ -57,6 +57,11 @@ firebase.auth()
 
 }
 
+firebase.auth().signOut().then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
 
 function App() {
   return (
