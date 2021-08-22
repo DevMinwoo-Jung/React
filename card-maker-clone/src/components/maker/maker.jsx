@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import Editor from '../../editor/editor';
-import Preview from '../../preivew/preview';
+import Editor from '../editor/editor';
+import Preview from '../preivew/preview';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './maker.module.css'
