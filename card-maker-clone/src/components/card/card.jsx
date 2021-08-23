@@ -14,7 +14,6 @@ const Card = ({card}) => {
         <p className={styels.title}>{title}</p>
         <p className={styels.email}>{email}</p>
         <p className={styels.message}>{message}</p>
-
       </div>
     </li>
   );
