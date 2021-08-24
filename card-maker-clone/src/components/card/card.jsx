@@ -3,8 +3,8 @@ import styels from './card.module.css'
 
 const Card = ({card}) => {
   const DEFAULT_IMAGE ='/images/default_logo.png'
-  const {name, company, title, email, message, theme, fireName, fireURL} = card;
-  const url = fireURL || DEFAULT_IMAGE;
+  const {name, company, title, email, message, theme, fireName, fileURL} = card;
+  const url = fileURL || DEFAULT_IMAGE;
   return (
     <li className={`${styels.card} ${pickStyles(theme)}`}>
       <img className={styels.avatar} src={url} alt="profile photo" />
