@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Editor from '../editor/editor';
 import Preview from '../preivew/preview';
@@ -14,10 +14,10 @@ const Maker = ({FileInput, authService, cardRepository }) => {
   const [userId, setUserId] = useState(historyState && historyState.id);
 
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService.logout();
-  }
-
+  }, [authService]);
+  
   useEffect(() => {
     if(!userId){
       return;
@@ -27,7 +27,7 @@ const Maker = ({FileInput, authService, cardRepository }) => {
     })
     return () => stopSync();
     // return에서 메모리 정리
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   useEffect(() => {
     authService.onAuthChange(user => {
@@ -37,7 +37,7 @@ const Maker = ({FileInput, authService, cardRepository }) => {
         history.push('/');
       }
     });
-  });
+  }, [userId, history, authService]);
 
 
   
@@ -69,7 +69,7 @@ const Maker = ({FileInput, authService, cardRepository }) => {
       <Header onLogout={onLogout} />
       <div className={styles.container}>
         <Editor FileInput={FileInput} cards={cards} addCard={createOrUpdateCard} updateCard={createOrUpdateCard} deleteCard={deleteCard}/>
-        <Preview cards={cards}/>
+        <Preview key={Date.now()} cards={cards}/>
       </div>
       <Footer />
     </section>

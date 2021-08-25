@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styels from './card.module.css'
 
-const Card = ({card}) => {
+const Card = memo(({card}) => {
   const DEFAULT_IMAGE ='/images/default_logo.png'
-  const {name, company, title, email, message, theme, fireName, fileURL} = card;
+  const {name, company, title, email, message, theme, fileURL} = card;
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <li className={`${styels.card} ${pickStyles(theme)}`}>
-      <img className={styels.avatar} src={url} alt="profile photo" />
+      <img className={styels.avatar} src={url} alt="profile" />
       <div className={styels.info}>
         <h1 className={styels.name}>{name}</h1>
         <p className={styels.company}>{company}</p>
@@ -17,7 +17,7 @@ const Card = ({card}) => {
       </div>
     </li>
   );
-}
+});
 
 function pickStyles(theme){
   switch(theme){
