@@ -17,7 +17,7 @@ const Maker = ({FileInput, authService, cardRepository }) => {
   const onLogout = useCallback(() => {
     authService.logout();
   }, [authService]);
-  
+
   useEffect(() => {
     if(!userId){
       return;
@@ -26,7 +26,6 @@ const Maker = ({FileInput, authService, cardRepository }) => {
       setCards(cards);
     })
     return () => stopSync();
-    // return에서 메모리 정리
   }, [userId, cardRepository]);
 
   useEffect(() => {
