@@ -1,9 +1,9 @@
 import './app.css';
-import LedgerEditForm from './components/ledger_edit_form/ledger_edit_form';
+import Maker from './components/maker/maker';
 
 function App() {
   return (
-    <LedgerEditForm/>
+    <Maker/>
   );
 }
 
