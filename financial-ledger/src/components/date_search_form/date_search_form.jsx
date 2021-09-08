@@ -1,10 +1,6 @@
 import React from 'react';
 
 const DateSearchForm = ({onSubmit, startRef, endRef}) => {
-  // const onButtonClick = () =>{
-  //   alert("이건 타지?");
-  //   onSubmit(startRef, endRef);
-  // }
   return (
     <div>
       <form >

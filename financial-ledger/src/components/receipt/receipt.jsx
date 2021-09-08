@@ -7,13 +7,11 @@ const Receipt = ({records}) => {
 
   return (
     <>
-    { (fileURL !== null) && 
-    (
       <div>
-        <img src={url} alt="" />
+        <img alt="" src={url} />
         <p>{etc}</p>
+        <p>sibal</p>
       </div>
-    )}
     </>
   );
 };

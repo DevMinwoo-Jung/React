@@ -4,7 +4,6 @@ import RecordAddForm from '../record_add_form/record_add_form';
 
 const Editor = ({records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
 
-  
   return (
     <>
     <div>
