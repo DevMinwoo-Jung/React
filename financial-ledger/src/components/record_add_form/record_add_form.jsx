@@ -37,8 +37,8 @@ const RecordAddForm = ({onAdd}) => {
         <input ref={cardsRef} type="text" name="cards"/>
         <input ref={categoryRef} type="text" name="category" />
         <input ref={etcRef} type="text" name="etc"/>
+      <Button name="Add Record" onClick={onSubmit}/>
       </form>
-      <Button onClick={onSubmit}/>
     </>
   );
 };

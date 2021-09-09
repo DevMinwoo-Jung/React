@@ -12,8 +12,8 @@ const Editor = ({records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
           <RecordEditForm onUpdate={onUpdate} key={key} records={records[key]} updateRecord={updateRecord} deleteRecord={deleteRecord}/>
         ))
       }
-    </div>
     <RecordAddForm onAdd={addRecord}/>
+    </div>
     </>
   );
 };

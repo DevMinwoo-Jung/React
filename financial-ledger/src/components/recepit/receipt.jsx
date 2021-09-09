@@ -1,17 +1,18 @@
 import React from 'react';
 
-const Receipt = ({records}) => {
+const Receipt = ({record}) => {
   const DEFAULT_IMAGE ='/images/default_logo.png'
-  const {fileURL, etc} = records;
+  const {fileURL, etc} = record;
   const url = fileURL;
-
   return (
     <>
+    {
+      url !== '' &&
       <div>
-        <img alt="" src={url} />
-        <p>{etc}</p>
-        <p>sibal</p>
+      <img src={url} alt="" />
+      <p>{etc}</p>
       </div>
+    }
     </>
   );
 };
