@@ -1,0 +1,64 @@
+@value makerBlue, makerWhite from '../../common/colors.css';
+@value mediaQuery from '../../common/size.css';
+
+.login {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.loginLeft {
+  background-color: makerBlue;
+  font-size: 10rem;
+  color: white;
+  height: 100%;
+  width: 55rem;
+  text-align: right;
+}
+
+.loginLeftFont {
+  display: block;
+  margin-right: 3rem;
+  margin-top: 2rem;
+}
+
+.loginRightFont {
+  font-size: 4rem;
+}
+
+.loginRight {
+  margin: auto;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.item {
+  text-align: center;
+}
+
+.button {
+  width: 30rem;
+  height: 4rem;
+  margin-top: 2rem;
+  border-radius: 10%;
+  background-color: makerWhite;
+  border: 0.2rem solid makerBlue;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgba(81, 141, 255, 1);
+}
+
+@media screen and (max-width: mediaQuery) {
+  .login {
+    flex-direction: column;
+  }
+}

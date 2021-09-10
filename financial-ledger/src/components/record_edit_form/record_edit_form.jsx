@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import Button from '../../button/button';
 
-const RecordEditForm = ({records, updateRecord, deleteRecord}) => {
+const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) => {
 
   const formRef = useRef();
   const dateRef = useRef(); 
@@ -11,7 +11,15 @@ const RecordEditForm = ({records, updateRecord, deleteRecord}) => {
   const categoryRef = useRef();
   const etcRef = useRef();
 
-  const {date, cost, cash, cards, category, etc} = records;
+  const {date, cost, cash, cards, category, etc, fileName} = record;
+
+  const onFileChange = file => {
+    updateRecord({
+          ...record,
+          fileName: file.name,
+          fileURL: file.url,
+    });
+};
 
   const onChange = (event) => {
     if(event.currentTarget == null) {
@@ -19,14 +27,15 @@ const RecordEditForm = ({records, updateRecord, deleteRecord}) => {
     }
     event.preventDefault();
     updateRecord({
-          ...records,
+          ...record,
           [event.currentTarget.name]: event.currentTarget.value,
     });
+    console.log([event.currentTarget.name], event.currentTarget.value);
 };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    deleteRecord(records);
+    deleteRecord(record);
 };
 
 
@@ -40,9 +49,10 @@ const RecordEditForm = ({records, updateRecord, deleteRecord}) => {
       <input ref={categoryRef} type="text" name="category" value={category} onChange={onChange}/>
       <input ref={etcRef} type="text" name="etc" value={etc} onChange={onChange}/>
     </form>
+    <FileInput name={fileName} onFileChange={onFileChange}/>
     <Button name='Delete' onClick={onSubmit}/>
   </div>
   );
-};
+});
 
 export default RecordEditForm;

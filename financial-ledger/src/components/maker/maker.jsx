@@ -1,36 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router';
 import DateSearchForm from '../date_search_form/date_search_form';
 import Editor from '../editor/editor';
+import Header from '../header/header';
 import Receipt from '../receipts/receipts';
 import Summary from '../summary/summary';
 
-const Maker = () => {
+const Maker = ({FileInput, authService, recordRepository }) => {
 
+  const history = useHistory();
+  const historyState = history?.location?.state;
   let startRef = useRef();
   let endRef = useRef();
-  
-  let [maxCost, setMaxCost] = useState();
-  let [sumCost, setSumCost] = useState();
+  const [userId, setUserId] = useState(historyState && historyState.id);
+  const [records, setRecords] = useState({});
+
+  const [maxCost, setMaxCost] = useState();
+  const [sumCost, setSumCost] = useState();
 
   
   let [dates, setDates] = useState({start: '', end: ''});
+
+  const onLogout = useCallback(() => {
+    authService.logout();
+  }, [authService]);
   
+  useEffect(() => {
+    if(!userId){
+      return;
+    }
+    const stopSync = recordRepository.syncRecords(userId, records => {
+      setRecords(records);
+    })
+    return () => stopSync();
+  }, [userId, recordRepository]);
 
-  const [records, setRecords] = useState([
-    {id: Date.now(), date: "2021-09-20", cost: 100000, cash: 'No', cards: 'Yes', category: 'food', etc: '안나오는겨?', fileURL: '/images/default_logo.png'},
-    {id: Date.now(), date: "2021-09-21", cost: 100000, cash: 'Yes', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-10-21", cost: 100000, cash: 'No', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-11-21", cost: 1200000, cash: 'Yes', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-12-21", cost: 1400000, cash: 'No', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-09-30", cost: 1500000, cash: 'Yes', cards: 'Yes', category: '', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-09-11", cost: 1600000, cash: 'No', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-09-21", cost: 1700000, cash: 'Yes', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-09-01", cost: 1800000, cash: 'No', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-09-01", cost: 1900000, cash: 'Yes', cards: 'Yes', category: 'food', etc: '',  fileURL: ''},
-    {id: Date.now(), date: "2021-09-21", cost: 3090000, cash: 'asd', cards: 'Yes', category: '', etc: '',  fileURL: ''},
-  ]);
+  useEffect(() => {
+    authService.onAuthChange(user => {
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        history.push('/');
+      }
+    });
+  }, [userId, history, authService]);
 
-  // console.log(typeof(records));
+
+
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -51,11 +67,11 @@ const Maker = () => {
 
     setRecords(records => {
       const updated = {...records};
-      console.log(updated);
       updated[record.id] = record;
-      console.log(updated);
       return updated;
     });
+    recordRepository.saveRecord(userId, record);
+
   };
 
   const deleteRecord = record => {
@@ -64,80 +80,64 @@ const Maker = () => {
       delete updated[record.id];
       return updated;
     });
+    recordRepository.removeRecord(userId, record);
   };
 
 
   const onUpdate = (startRef, endRef ) => {
-    let newRecords = [...records];
+    let tempRecords;
+    const originRecords = {...records};
+    console.log("1: "+originRecords);
+    let newRecords;
     setRecords(newRecords);
     if(startRef > endRef){
       alert("시작일이 종료일보다 클 수 없습니다.");
       // alert을 modal로 보여줘보자!
     } else {
       if((startRef & endRef) === ''){
-        newRecords = [...records];
-        setRecords( newRecords);
-        console.log(newRecords);
-      } else if ((startRef !== '') & (endRef === '')){
-        newRecords = [...records];
-        newRecords = newRecords.filter(newRecord => newRecord.date >= startRef);
-        setRecords( newRecords);
-        console.log(newRecords);
-      } else if ((startRef === '') & (endRef !== '')){
-        newRecords = [...records];
-        newRecords = newRecords.filter(newRecord => newRecord.date <= endRef);
-        setRecords( newRecords);
-        console.log(newRecords);
-      } else if ((startRef !== '') & (endRef !== '')){
-        newRecords = [...records];
+        newRecords = Object.entries({...records});
         newRecords = newRecords
-        .filter(newRecord => newRecord.date >= startRef)
-        .filter(newRecord => newRecord.date <= endRef);
+        .map(newRecord => newRecord[1]);
+        setRecords( newRecords)
+      } else if ((startRef !== '') & (endRef === '')){
+        newRecords = Object.entries({...records});
+        newRecords = newRecords.filter(newRecord => newRecord[1].date >= startRef)
+        .map(newRecord => newRecord[1]);
+        setRecords( newRecords)
+      } else if ((startRef === '') & (endRef !== '')){
+        newRecords = Object.entries({...records});
+        newRecords = newRecords.filter(newRecord => newRecord[1].date <= endRef)
+        .map(newRecord => newRecord[1]);
+        setRecords( newRecords);
+      } else if ((startRef !== '') & (endRef !== '')){
+        newRecords = Object.entries({...records});
+        newRecords = newRecords
+        .filter(newRecord => newRecord[1].date >= startRef)
+        .filter(newRecord => newRecord[1].date <= endRef)
+        .map(newRecord => newRecord[1]);
         setRecords(newRecords);
-        console.log(newRecords);
       }
     }
-    maxCost = 0;
-    setMaxCost(sumCost);
+    console.log(newRecords);
+    console.log(originRecords);
+    let max = 0;
+    setMaxCost(max);
     for(let i=0; i<Object.keys(newRecords).length; i++){
-      if(maxCost < newRecords[i].cost){
-        maxCost = newRecords[i].cost;
+      if(max < newRecords[i].cost){
+        max = Number(newRecords[i].cost);
       }
     }
-    setMaxCost(maxCost);
+    setMaxCost(max);
 
-    sumCost = 0;
-    setSumCost(maxCost);
+    let sum = 0;
+    setSumCost(sum);
     for(let i=0; i<Object.keys(newRecords).length; i++){
-      sumCost = sumCost + newRecords[i].cost;
+      sum = sum + Number(newRecords[i].cost);
     }
-    setSumCost(sumCost);
+    setSumCost(sum);
 
     
   }
-
-  const setChange = () => {
-    console.log(records);
-      maxCost = 0;
-      setMaxCost(sumCost);
-      for(let i=0; i<Object.keys(records).length; i++){
-        if(maxCost < records[i].cost){
-          maxCost = records[i].cost;
-        }
-      }
-      setMaxCost(maxCost);
-
-      sumCost = 0;
-      setSumCost(maxCost);
-      for(let i=0; i<Object.keys(records).length; i++){
-        sumCost = sumCost + records[i].cost;
-      }
-      setSumCost(sumCost);
-    
-  }
-
-
-
 
   useEffect(() => {
     setRecords(records);
@@ -146,8 +146,9 @@ const Maker = () => {
 
   return (
     <>
+      <Header onLogout={onLogout} />
       <DateSearchForm onSubmit={onSubmit} startRef={startRef} endRef={endRef} />
-      <Editor records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    
+      <Editor FileInput={FileInput} records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    
       <Receipt records={records}/>
       <Summary records={records} dates={dates} sumCost={sumCost} maxCost={maxCost}  />
     </>
