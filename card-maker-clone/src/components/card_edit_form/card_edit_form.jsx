@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import Button from '../button/button';
 import styles from './card_edit_form.module.css'
 
-const CardEditForm = ({FileInput, card, updateCard, deleteCard}) => {
+const CardEditForm = memo(({FileInput, card, updateCard, deleteCard}) => {
       const nameRef = useRef();
       const companyRef = useRef();
       const themeRef = useRef();
@@ -52,5 +52,5 @@ const CardEditForm = ({FileInput, card, updateCard, deleteCard}) => {
                   <Button name='Delete' onClick={onSubmit}/>
             </form>
       );
-};
+});
 export default CardEditForm;

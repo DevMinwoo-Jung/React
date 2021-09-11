@@ -14,6 +14,10 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   let endRef = useRef();
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [records, setRecords] = useState({});
+  const [orginalRecords, setOrginalRecords] = useState();
+
+
+
 
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
@@ -30,6 +34,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
       return;
     }
     const stopSync = recordRepository.syncRecords(userId, records => {
+      setOrginalRecords(records);
       setRecords(records);
     })
     return () => stopSync();
@@ -83,29 +88,31 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     recordRepository.removeRecord(userId, record);
   };
 
+  // const callOriginal = recordRepository.syncRecords(userId, orginalRecords => {
+  //   setOrginalRecords(orginalRecords);
+  // });
 
   const onUpdate = (startRef, endRef ) => {
-    let tempRecords;
-    const originRecords = {...records};
-    console.log("1: "+originRecords);
-    let newRecords;
+
+    let newRecords = orginalRecords;
+    console.log(newRecords);
     setRecords(newRecords);
     if(startRef > endRef){
       alert("시작일이 종료일보다 클 수 없습니다.");
       // alert을 modal로 보여줘보자!
     } else {
       if((startRef & endRef) === ''){
-        newRecords = Object.entries({...records});
+        newRecords = Object.entries({...orginalRecords});
         newRecords = newRecords
         .map(newRecord => newRecord[1]);
-        setRecords( newRecords)
+        setRecords( newRecords);
       } else if ((startRef !== '') & (endRef === '')){
-        newRecords = Object.entries({...records});
+        newRecords = Object.entries({...orginalRecords});
         newRecords = newRecords.filter(newRecord => newRecord[1].date >= startRef)
         .map(newRecord => newRecord[1]);
-        setRecords( newRecords)
+        setRecords( newRecords);
       } else if ((startRef === '') & (endRef !== '')){
-        newRecords = Object.entries({...records});
+        newRecords = Object.entries({...orginalRecords});
         newRecords = newRecords.filter(newRecord => newRecord[1].date <= endRef)
         .map(newRecord => newRecord[1]);
         setRecords( newRecords);
@@ -118,8 +125,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
         setRecords(newRecords);
       }
     }
-    console.log(newRecords);
-    console.log(originRecords);
+
     let max = 0;
     setMaxCost(max);
     for(let i=0; i<Object.keys(newRecords).length; i++){
@@ -136,7 +142,8 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     }
     setSumCost(sum);
 
-    
+    console.log(orginalRecords);
+    console.log(records);
   }
 
   useEffect(() => {

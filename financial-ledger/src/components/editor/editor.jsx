@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import RecordEditForm from '../record_edit_form/record_edit_form';
 import RecordAddForm from '../record_add_form/record_add_form';
 
-const Editor = ({FileInput, records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
+const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
 
   return (
     <>
@@ -16,6 +16,6 @@ const Editor = ({FileInput, records, onUpdate, addRecord, updateRecord, deleteRe
     </div>
     </>
   );
-};
+});
 
 export default Editor;
