@@ -10,19 +10,14 @@ const Maker = ({FileInput, authService, recordRepository }) => {
 
   const history = useHistory();
   const historyState = history?.location?.state;
-  let startRef = useRef();
-  let endRef = useRef();
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [records, setRecords] = useState({});
   const [orginalRecords, setOrginalRecords] = useState();
-
-
-
-
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
 
-  
+  let startRef = useRef();
+  let endRef = useRef();
   let [dates, setDates] = useState({start: '', end: ''});
 
   const onLogout = useCallback(() => {

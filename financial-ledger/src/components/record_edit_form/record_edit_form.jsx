@@ -30,7 +30,6 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
           ...record,
           [event.currentTarget.name]: event.currentTarget.value,
     });
-    console.log([event.currentTarget.name], event.currentTarget.value);
 };
 
   const onSubmit = (event) => {
@@ -41,7 +40,7 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
 
   return (
   <div>
-    <form ref={formRef}>
+    <form ref={formRef} >
       <input ref={dateRef} type="text" name="date" value={date} onChange={onChange}/>
       <input ref={costRef} type="number" name="cost" value={cost} onChange={onChange}/>
       <input ref={cashRef} type="text" name="cash" value={cash} onChange={onChange}/>
@@ -50,7 +49,7 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
       <input ref={etcRef} type="text" name="etc" value={etc} onChange={onChange}/>
     </form>
     <FileInput name={fileName} onFileChange={onFileChange}/>
-    <Button name='Delete' onClick={onSubmit}/>
+    <Button name='Delete' onClick={onSubmit} />
   </div>
   );
 });
