@@ -3,7 +3,6 @@ import Button from '../../button/button';
 
 const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) => {
 
-  const formRef = useRef();
   const dateRef = useRef(); 
   const costRef = useRef(); 
   const cashRef = useRef();
@@ -40,16 +39,16 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
 
   return (
   <div>
-    <form ref={formRef} >
+    <form >
       <input ref={dateRef} type="text" name="date" value={date} onChange={onChange}/>
       <input ref={costRef} type="number" name="cost" value={cost} onChange={onChange}/>
       <input ref={cashRef} type="text" name="cash" value={cash} onChange={onChange}/>
       <input ref={cardsRef} type="text" name="cards" value={cards} onChange={onChange}/>
       <input ref={categoryRef} type="text" name="category" value={category} onChange={onChange}/>
       <input ref={etcRef} type="text" name="etc" value={etc} onChange={onChange}/>
-    </form>
     <FileInput name={fileName} onFileChange={onFileChange}/>
     <Button name='Delete' onClick={onSubmit} />
+    </form>
   </div>
   );
 });

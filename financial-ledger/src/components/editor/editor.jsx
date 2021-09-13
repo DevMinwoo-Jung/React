@@ -5,7 +5,6 @@ import RecordAddForm from '../record_add_form/record_add_form';
 const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
 
   return (
-    <>
     <div>
       {
         Object.keys(records).map(key => (
@@ -14,7 +13,6 @@ const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, del
       }
     <RecordAddForm FileInput={FileInput} onAdd={addRecord}/>
     </div>
-    </>
   );
 });
 

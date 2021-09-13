@@ -12,6 +12,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [records, setRecords] = useState({});
+  let [newRecords, setNewRecords] = useState();
   const [orginalRecords, setOrginalRecords] = useState();
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
@@ -30,7 +31,6 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     }
     const stopSync = recordRepository.syncRecords(userId, records => {
       setOrginalRecords(records);
-      setRecords(records);
     })
     return () => stopSync();
   }, [userId, recordRepository]);
@@ -46,6 +46,9 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   }, [userId, history, authService]);
 
 
+  useEffect(() => {
+    setRecords(records);
+  }, [records]);
 
 
   const onSubmit = (event) => {
@@ -63,40 +66,17 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     console.log(dates);
   }
 
-  const createOrUpdateRecord = record => {
 
-    setRecords(records => {
-      const updated = {...records};
-      updated[record.id] = record;
-      return updated;
-    });
-    recordRepository.saveRecord(userId, record);
 
-  };
-
-  const deleteRecord = record => {
-    setRecords(records => {
-      const updated = {...records};
-      delete updated[record.id];
-      return updated;
-    });
-    recordRepository.removeRecord(userId, record);
-  };
-
-  // const callOriginal = recordRepository.syncRecords(userId, orginalRecords => {
-  //   setOrginalRecords(orginalRecords);
-  // });
 
   const onUpdate = (startRef, endRef ) => {
-
-    let newRecords = orginalRecords;
-    console.log(newRecords);
-    setRecords(newRecords);
+    setNewRecords(orginalRecords);
+    // console.log(newRecords);
     if(startRef > endRef){
       alert("시작일이 종료일보다 클 수 없습니다.");
       // alert을 modal로 보여줘보자!
     } else {
-      if((startRef & endRef) === ''){
+      if((startRef === '') & (endRef === '')){
         newRecords = Object.entries({...orginalRecords});
         newRecords = newRecords
         .map(newRecord => newRecord[1]);
@@ -112,12 +92,13 @@ const Maker = ({FileInput, authService, recordRepository }) => {
         .map(newRecord => newRecord[1]);
         setRecords( newRecords);
       } else if ((startRef !== '') & (endRef !== '')){
-        newRecords = Object.entries({...records});
+        newRecords = Object.entries({...orginalRecords});
         newRecords = newRecords
         .filter(newRecord => newRecord[1].date >= startRef)
         .filter(newRecord => newRecord[1].date <= endRef)
         .map(newRecord => newRecord[1]);
         setRecords(newRecords);
+        console.log(newRecords);
       }
     }
 
@@ -136,14 +117,33 @@ const Maker = ({FileInput, authService, recordRepository }) => {
       sum = sum + Number(newRecords[i].cost);
     }
     setSumCost(sum);
-
-    console.log(orginalRecords);
-    console.log(records);
   }
 
-  useEffect(() => {
-    setRecords(records);
-  }, [records]);
+  const createOrUpdateRecord = record => {
+    // setRecords(newRecords => {
+    //   const updated = {...newRecords};
+    //   updated[record.id] = record;
+    //   return updated;
+    // });
+
+    setRecords(Object.keys(records).map(key => records[key]).filter(records => records.id === record.id));
+    console.log(records);
+    recordRepository.saveRecord(userId, record);
+
+  };
+
+  const deleteRecord = record => {
+    setRecords(records => {
+      const updated = {...records};
+      delete updated[record.id];
+      return updated;
+    });
+    recordRepository.removeRecord(userId, record);
+  };
+
+  // useEffect(() => {
+  //   setRecords(records);
+  // }, [records]);
   
 
   return (

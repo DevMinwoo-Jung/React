@@ -28,7 +28,6 @@ const RecordAddForm = ({FileInput, onAdd}) => {
     formRef.current.reset();
     setFile({ fileName: null, fileURL: null, });
     onAdd(record);
-    console.log(record);
   }
 
   const onFileChange = file => {
