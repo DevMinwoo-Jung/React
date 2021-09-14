@@ -29,6 +29,7 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
           ...record,
           [event.currentTarget.name]: event.currentTarget.value,
     });
+    console.log(record);
 };
 
   const onSubmit = (event) => {

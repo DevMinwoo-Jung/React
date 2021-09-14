@@ -12,18 +12,19 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   const historyState = history?.location?.state;
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [records, setRecords] = useState({});
-  let [newRecords, setNewRecords] = useState();
-  const [orginalRecords, setOrginalRecords] = useState();
+  const [newRecords, setNewRecords] = useState({});
+  const [orginalRecords, setOrginalRecords] = useState({});
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
 
   let startRef = useRef();
   let endRef = useRef();
-  let [dates, setDates] = useState({start: '', end: ''});
+  const [dates, setDates] = useState({start: '', end: ''});
 
   const onLogout = useCallback(() => {
     authService.logout();
   }, [authService]);
+
   
   useEffect(() => {
     if(!userId){
@@ -31,6 +32,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     }
     const stopSync = recordRepository.syncRecords(userId, records => {
       setOrginalRecords(records);
+      setNewRecords(records);
     })
     return () => stopSync();
   }, [userId, recordRepository]);
@@ -45,89 +47,81 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     });
   }, [userId, history, authService]);
 
-
   useEffect(() => {
-    setRecords(records);
-  }, [records]);
-
+    const stopSync = recordRepository.syncRecords(userId, records => {
+      setRecords(records);
+    })
+    return () => stopSync();
+  }, []);
 
   const onSubmit = (event) => {
     event.preventDefault();
     startRef = startRef.current.value;
     endRef = endRef.current.value;
     onUpdate(startRef, endRef);
+    modifyDates(startRef, endRef);
   }
 
   const modifyDates = (startRef, endRef) => {
     setDates({
-      start: startRef.current.value,
-      endRef: endRef.current.value
+      start: startRef,
+      end: endRef,
     })
-    console.log(dates);
   }
-
-
-
 
   const onUpdate = (startRef, endRef ) => {
     setNewRecords(orginalRecords);
-    // console.log(newRecords);
-    if(startRef > endRef){
-      alert("시작일이 종료일보다 클 수 없습니다.");
-      // alert을 modal로 보여줘보자!
-    } else {
       if((startRef === '') & (endRef === '')){
-        newRecords = Object.entries({...orginalRecords});
-        newRecords = newRecords
-        .map(newRecord => newRecord[1]);
-        setRecords( newRecords);
-      } else if ((startRef !== '') & (endRef === '')){
-        newRecords = Object.entries({...orginalRecords});
-        newRecords = newRecords.filter(newRecord => newRecord[1].date >= startRef)
-        .map(newRecord => newRecord[1]);
-        setRecords( newRecords);
-      } else if ((startRef === '') & (endRef !== '')){
-        newRecords = Object.entries({...orginalRecords});
-        newRecords = newRecords.filter(newRecord => newRecord[1].date <= endRef)
-        .map(newRecord => newRecord[1]);
-        setRecords( newRecords);
-      } else if ((startRef !== '') & (endRef !== '')){
-        newRecords = Object.entries({...orginalRecords});
-        newRecords = newRecords
-        .filter(newRecord => newRecord[1].date >= startRef)
-        .filter(newRecord => newRecord[1].date <= endRef)
-        .map(newRecord => newRecord[1]);
+        setNewRecords({...orginalRecords});
         setRecords(newRecords);
-        console.log(newRecords);
-      }
+      } else if ((startRef !== '') & (endRef === '')){
+        setNewRecords({...orginalRecords});
+        for(let key in newRecords){
+          if(!(newRecords[key].date >= startRef)){
+            delete newRecords[key];
+          }
+        }
+        setRecords(newRecords);
+      } else if ((startRef === '') & (endRef !== '')){
+        setNewRecords({...orginalRecords});
+        for(let key in newRecords){
+          if(!(newRecords[key].date <= endRef)){
+            delete newRecords[key];
+          }
+        }
+        setRecords(newRecords);
+      } else if ((startRef !== '') & (endRef !== '')){
+        setNewRecords({...orginalRecords});
+        for(let key in newRecords){
+          if(!(newRecords[key].date >= startRef && newRecords[key].date <= endRef)){
+            delete newRecords[key];
+          }
+        }
+        setRecords(newRecords);
+      
     }
-
-    let max = 0;
-    setMaxCost(max);
-    for(let i=0; i<Object.keys(newRecords).length; i++){
-      if(max < newRecords[i].cost){
-        max = Number(newRecords[i].cost);
-      }
-    }
-    setMaxCost(max);
 
     let sum = 0;
-    setSumCost(sum);
-    for(let i=0; i<Object.keys(newRecords).length; i++){
-      sum = sum + Number(newRecords[i].cost);
+    for(let key in newRecords){
+      sum = sum + Number(newRecords[key].cost);
     }
     setSumCost(sum);
+
+    let max = 0;
+    for(let key in newRecords){
+      if(max < Number(newRecords[key].cost)){
+        max = Number(newRecords[key].cost);
+      }
+    }
+    setMaxCost(max);
   }
 
   const createOrUpdateRecord = record => {
-    // setRecords(newRecords => {
-    //   const updated = {...newRecords};
-    //   updated[record.id] = record;
-    //   return updated;
-    // });
-
-    setRecords(Object.keys(records).map(key => records[key]).filter(records => records.id === record.id));
-    console.log(records);
+      setRecords(records => {
+      const updated = {...records};
+      updated[record.id] = record;
+      return updated;
+    });
     recordRepository.saveRecord(userId, record);
 
   };
@@ -140,11 +134,6 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     });
     recordRepository.removeRecord(userId, record);
   };
-
-  // useEffect(() => {
-  //   setRecords(records);
-  // }, [records]);
-  
 
   return (
     <>
