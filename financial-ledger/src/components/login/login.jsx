@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './login.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWonSign } from '@fortawesome/free-solid-svg-icons'
+
 
 const Login = ({authService}) => {
   const history = useHistory();
@@ -27,9 +30,16 @@ const Login = ({authService}) => {
   return(
     <section className={styles.login}>
       <div className={styles.loginLeft}>
-        <span className={styles.loginLeftFont}>My</span>
-        <span className={styles.loginLeftFont}>World Cup</span>
-        <span className={styles.loginLeftFont}>Maker</span>
+      <FontAwesomeIcon icon={faWonSign} className={styles.won}/>
+        <span className={styles.loginLeftBigFont}>
+          이번달은 먹은거 
+          <br/>밖에 없는데
+          <br/>바닥난 내 통장...
+          <br/>얼마나 썼더라?
+        </span>
+        <span className={styles.loginLeftsmallFont}> 
+          나만의 가계부로 소비습관을 쉽게 알아보세요!
+        </span>
       </div>
       <div className={styles.loginRight}>  
         <ul className={styles.list}>
