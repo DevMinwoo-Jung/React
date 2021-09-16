@@ -7,6 +7,7 @@ import ImageUploader from './service/image_uploader';
 import ImageFileInput from './components/image_file_input/image_file_input';
 import RecordRepository from './service/record_repository';
 
+
 const authService = new AuthService();
 const imageUploader = new ImageUploader();
 const recordRepository = new RecordRepository();

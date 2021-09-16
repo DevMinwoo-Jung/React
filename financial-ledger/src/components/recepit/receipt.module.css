@@ -1,0 +1,15 @@
+.receipt {
+  width: 12rem;
+  height: 15rem;
+  min-width: 12rem;
+  border: 1px solid black;
+  margin: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.receipt__img {
+  margin-top: 10px;
+  width: 8rem;
+  height: 10rem;
+}

@@ -1,0 +1,7 @@
+.receipts {
+  display: flex;
+  border: 1px solid black;
+  width: 100rem;
+  height: 19rem;
+  overflow-x: auto;
+}

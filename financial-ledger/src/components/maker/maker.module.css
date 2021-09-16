@@ -1,0 +1,9 @@
+.contents {
+  margin: 1rem;
+}
+
+.display {
+  display: flex;
+  position: relative;
+  overflow-x: hidden;
+}

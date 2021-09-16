@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './summary.module.css'
 
 const Summary = ({records ,dates, sumCost, maxCost}) => {
 
@@ -9,7 +10,6 @@ const Summary = ({records ,dates, sumCost, maxCost}) => {
     startDate = records[key].date;
     endDate = records[key].date;
   }
-  console.log(startDate);
 
   if((sumCost === null) || (sumCost === undefined)){
     sumCost = 0;
@@ -24,7 +24,7 @@ const Summary = ({records ,dates, sumCost, maxCost}) => {
   }
 
   return (
-    <div>
+    <div className={styles.summary}>
       <h1>{dates['start']} 부터 {dates['end']} 까지 총: {sumCost}원</h1>
       <h1>{dates['start']} 부터 {dates['end']} 까지 가장 큰 지출은:  {maxCost}원</h1>
     </div>

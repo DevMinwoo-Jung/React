@@ -6,12 +6,12 @@ const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, del
 
   return (
     <div>
+      <RecordAddForm FileInput={FileInput} onAdd={addRecord}/>  
       {
         Object.keys(records).map(key => (
           <RecordEditForm FileInput={FileInput} onUpdate={onUpdate} key={key} record={records[key]} updateRecord={updateRecord} deleteRecord={deleteRecord}/>
         ))
       }
-    <RecordAddForm FileInput={FileInput} onAdd={addRecord}/>
     </div>
   );
 });

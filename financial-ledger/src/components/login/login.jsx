@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './login.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWonSign } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faWonSign } from '@fortawesome/free-solid-svg-icons'
 
 
 const Login = ({authService}) => {
@@ -30,7 +30,7 @@ const Login = ({authService}) => {
   return(
     <section className={styles.login}>
       <div className={styles.loginLeft}>
-      <FontAwesomeIcon icon={faWonSign} className={styles.won}/>
+      {/* <FontAwesomeIcon icon={faWonSign} className={styles.won}/> */}
         <span className={styles.loginLeftBigFont}>
           이번달은 먹은거 
           <br/>밖에 없는데
