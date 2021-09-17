@@ -1,6 +1,7 @@
-import React from 'react';
-import { useRef, useState } from 'react/cjs/react.development';
+import React, { useRef, useState } from 'react';
+
 import Button from '../../button/button';
+import styles from './record_add_form.module.css';
 
 const RecordAddForm = ({FileInput, onAdd}) => {
   const formRef = useRef();
@@ -39,18 +40,16 @@ const RecordAddForm = ({FileInput, onAdd}) => {
 
 
   return (
-    <>
-      <form ref={formRef}>
-        <input ref={dateRef} type="text" name="date"/>
-        <input ref={costRef} type="number" name="cost" />
-        <input ref={cashRef} type="text" name="cash"/>
-        <input ref={cardsRef} type="text" name="cards"/>
-        <input ref={categoryRef} type="text" name="category" />
-        <input ref={etcRef} type="text" name="etc"/>
+      <form className={styles.form} ref={formRef}>
+        <input className={styles.inputs} ref={dateRef} type="text" name="date"/>
+        <input className={styles.inputs} ref={costRef} type="number" name="cost" />
+        <input className={styles.inputs} ref={cashRef} type="text" name="cash"/>
+        <input className={styles.inputs} ref={cardsRef} type="text" name="cards"/>
+        <input className={styles.inputs} ref={categoryRef} type="text" name="category" />
+        <input className={styles.inputs} ref={etcRef} type="text" name="etc"/>
       <FileInput name={file.fileName} onFileChange={onFileChange}/>
       <Button name="Add Record" onClick={onSubmit}/>
       </form>
-    </>
   );
 };
 

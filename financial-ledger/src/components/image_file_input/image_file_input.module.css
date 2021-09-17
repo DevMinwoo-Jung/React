@@ -1,11 +1,12 @@
 @value makerLightGrey, makerPink, makerLightPink from "../../common/colors.css";
 
 .container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 12%;
+  margin: 2px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .input {

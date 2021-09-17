@@ -1,11 +1,22 @@
 import React, { memo } from 'react';
 import RecordEditForm from '../record_edit_form/record_edit_form';
 import RecordAddForm from '../record_add_form/record_add_form';
+import styles from './editor.module.css';
 
 const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
 
   return (
-    <div>
+    <div className={styles.addAndEdit}>
+      <div>
+        <span className={styles.textBox}>날짜</span>
+        <span className={styles.textBox}>사용내역</span>
+        <span className={styles.textBox}>현금</span>
+        <span className={styles.textBox}>카드</span>
+        <span className={styles.textBox}>분류</span>
+        <span className={styles.textBox}>기타</span>
+        <span className={styles.textBox}>사진첨부</span>
+        <span className={styles.textBox}>추가/삭제</span>
+      </div>
       <RecordAddForm FileInput={FileInput} onAdd={addRecord}/>  
       {
         Object.keys(records).map(key => (

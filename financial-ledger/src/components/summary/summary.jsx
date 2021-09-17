@@ -25,8 +25,8 @@ const Summary = ({records ,dates, sumCost, maxCost}) => {
 
   return (
     <div className={styles.summary}>
-      <h1>{dates['start']} 부터 {dates['end']} 까지 총: {sumCost}원</h1>
-      <h1>{dates['start']} 부터 {dates['end']} 까지 가장 큰 지출은:  {maxCost}원</h1>
+      <span>{dates['start']} 부터 {dates['end']} 까지 총: {sumCost}원</span><br/>
+      <span>{dates['start']} 부터 {dates['end']} 까지 가장 큰 지출은:  {maxCost}원</span>
     </div>
   );
 };

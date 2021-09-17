@@ -1,5 +1,6 @@
 import React, { memo, useRef } from 'react';
 import Button from '../../button/button';
+import styles from './record_edit_form.module.css';
 
 const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) => {
 
@@ -39,18 +40,16 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
 
 
   return (
-  <div>
-    <form >
-      <input ref={dateRef} type="text" name="date" value={date} onChange={onChange}/>
-      <input ref={costRef} type="number" name="cost" value={cost} onChange={onChange}/>
-      <input ref={cashRef} type="text" name="cash" value={cash} onChange={onChange}/>
-      <input ref={cardsRef} type="text" name="cards" value={cards} onChange={onChange}/>
-      <input ref={categoryRef} type="text" name="category" value={category} onChange={onChange}/>
-      <input ref={etcRef} type="text" name="etc" value={etc} onChange={onChange}/>
+    <form className={styles.form} >
+      <input className={styles.inputs} ref={dateRef} type="text" name="date" value={date} onChange={onChange}/>
+      <input className={styles.inputs} ref={costRef} type="number" name="cost" value={cost} onChange={onChange}/>
+      <input className={styles.inputs} ref={cashRef} type="text" name="cash" value={cash} onChange={onChange}/>
+      <input className={styles.inputs} ref={cardsRef} type="text" name="cards" value={cards} onChange={onChange}/>
+      <input className={styles.inputs} ref={categoryRef} type="text" name="category" value={category} onChange={onChange}/>
+      <input className={styles.inputs} ref={etcRef} type="text" name="etc" value={etc} onChange={onChange}/>
     <FileInput name={fileName} onFileChange={onFileChange}/>
     <Button name='Delete' onClick={onSubmit} />
     </form>
-  </div>
   );
 });
 

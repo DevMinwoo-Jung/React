@@ -1,18 +1,18 @@
 import React from 'react';
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import styles from './receipt.module.css'
+
 
 const Receipt = ({record}) => {
   const {fileURL, etc, date} = record;
   const url = fileURL;
+  console.log(record);
   return (
     <>
     {
       url !== '' &&
-      <div>
+      <div className={styles.receipt}>
       <p>{date}</p>  
-      <img src={url} alt="" />
+      <img className={styles.receipt__img} src={url} alt="" />
       <p>{etc}</p>
       </div>
     }

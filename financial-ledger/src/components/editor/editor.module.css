@@ -1,0 +1,20 @@
+.addAndEdit {
+  border: 1px solid black;
+  margin: auto;
+  width: 115rem;
+  height: 25rem;
+  display: block;
+  overflow-x: hidden;
+}
+
+.textBox {
+  width: 12%;
+  padding: 8px 20px;
+  margin: 2px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-weight: bold;
+  background-color: rgb(244, 247, 242);
+}

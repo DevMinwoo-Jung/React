@@ -5,17 +5,8 @@ import Editor from '../editor/editor';
 import Header from '../header/header';
 import Receipts from '../receipts/receipts';
 import Summary from '../summary/summary';
-import styles from './maker.module.css'
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3
-};
+import styles from './maker.module.css';
+
 
 const Maker = ({FileInput, authService, recordRepository }) => {
 
@@ -149,15 +140,13 @@ const Maker = ({FileInput, authService, recordRepository }) => {
 
   return (
     <>
-    <Slider {...settings}>
-    <Receipts records={records}/>
-    </Slider>
     <Header onLogout={onLogout} />
     <section className={styles.contents}>
     <div>
       <DateSearchForm onSubmit={onSubmit} startRef={startRef} endRef={endRef} />
     </div>
     <div className={styles.display}>
+      <Receipts records={records} key={1993}/>
       <Summary records={records} dates={dates} sumCost={sumCost} maxCost={maxCost}  />
     </div>
       <Editor FileInput={FileInput} records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    
