@@ -41,11 +41,21 @@ const RecordAddForm = ({FileInput, onAdd}) => {
 
   return (
       <form className={styles.form} ref={formRef}>
-        <input className={styles.inputs} ref={dateRef} type="text" name="date"/>
+        <input className={styles.inputs} ref={dateRef} type="date" name="date"/>
         <input className={styles.inputs} ref={costRef} type="number" name="cost" />
         <input className={styles.inputs} ref={cashRef} type="text" name="cash"/>
         <input className={styles.inputs} ref={cardsRef} type="text" name="cards"/>
-        <input className={styles.inputs} ref={categoryRef} type="text" name="category" />
+        <select ref={categoryRef}className={styles.inputs} name="theme" >
+                        <option value=""></option>
+                        <option value="foods">식비</option>
+                        <option value="rent">주거</option>
+                        <option value="daily">생필품</option>
+                        <option value="health/culture">건강/문화</option>
+                        <option value="education">교육</option>
+                        <option value="transportation">교통</option>
+                        <option value="Installment">할부</option>
+                        <option value="etc">기타</option>
+        </select>
         <input className={styles.inputs} ref={etcRef} type="text" name="etc"/>
       <FileInput name={file.fileName} onFileChange={onFileChange}/>
       <Button name="Add Record" onClick={onSubmit}/>

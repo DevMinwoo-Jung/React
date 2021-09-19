@@ -51,11 +51,8 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   }, [userId, history, authService]);
 
   useEffect(() => {
-    const stopSync = recordRepository.syncRecords(userId, records => {
-      setRecords(records);
-    })
-    return () => stopSync();
-  }, []);
+    setRecords(records);
+  }, [records]);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -63,6 +60,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     endRef = endRef.current.value;
     onUpdate(startRef, endRef);
     modifyDates(startRef, endRef);
+    console.log(records);
   }
 
   const modifyDates = (startRef, endRef) => {
@@ -146,7 +144,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
       <DateSearchForm onSubmit={onSubmit} startRef={startRef} endRef={endRef} />
     </div>
     <div className={styles.display}>
-      <Receipts records={records} key={1993}/>
+      <Receipts records={records} key={Math.random()}/>
       <Summary records={records} dates={dates} sumCost={sumCost} maxCost={maxCost}  />
     </div>
       <Editor FileInput={FileInput} records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    

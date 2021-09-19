@@ -38,17 +38,16 @@ const Receipts = ({records}) => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
-  const ex =   Object.keys(records)
+  const length =   Object.keys(records)
   .map(key => records[key])
   .filter(record => record['fileURL'] !== '')
   .map(record => record);
-  console.log(ex.length);
 
   return (
     <>
     <div className={styles.receipts}>
       
-    <Slider {...settings} slidesToShow={Math.min(ex.length, 3)}>
+    <Slider {...settings} slidesToShow={Math.min(length.length, 3)}>
       {
           Object.keys(records)
           .map(key => records[key])

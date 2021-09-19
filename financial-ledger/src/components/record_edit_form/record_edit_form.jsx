@@ -41,11 +41,21 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
 
   return (
     <form className={styles.form} >
-      <input className={styles.inputs} ref={dateRef} type="text" name="date" value={date} onChange={onChange}/>
+      <input className={styles.inputs} ref={dateRef} type="date" name="date" value={date} onChange={onChange}/>
       <input className={styles.inputs} ref={costRef} type="number" name="cost" value={cost} onChange={onChange}/>
       <input className={styles.inputs} ref={cashRef} type="text" name="cash" value={cash} onChange={onChange}/>
       <input className={styles.inputs} ref={cardsRef} type="text" name="cards" value={cards} onChange={onChange}/>
-      <input className={styles.inputs} ref={categoryRef} type="text" name="category" value={category} onChange={onChange}/>
+      <select ref={categoryRef} className={styles.inputs} name="category"  value={category} onChange={onChange} >
+                        <option value=""></option>
+                        <option value="foods">식비</option>
+                        <option value="rent">주거</option>
+                        <option value="daily">생필품</option>
+                        <option value="health/culture">건강/문화</option>
+                        <option value="education">교육</option>
+                        <option value="transportation">교통</option>
+                        <option value="Installment">할부</option>
+                        <option value="etc">기타</option>
+        </select>
       <input className={styles.inputs} ref={etcRef} type="text" name="etc" value={etc} onChange={onChange}/>
     <FileInput name={fileName} onFileChange={onFileChange}/>
     <Button name='Delete' onClick={onSubmit} />

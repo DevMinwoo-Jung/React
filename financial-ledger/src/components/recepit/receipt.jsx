@@ -10,10 +10,10 @@ const Receipt = ({record}) => {
     <>
     {
       url !== '' &&
-      <div className={styles.receipt}>
-      <p>{date}</p>  
-      <img className={styles.receipt__img} src={url} alt="" />
-      <p>{etc}</p>
+        <div className={styles.receipt}>
+        <p>{date}</p>  
+        <img className={styles.receipt__img} src={url} alt="" />
+        <p>{etc}</p>
       </div>
     }
     </>

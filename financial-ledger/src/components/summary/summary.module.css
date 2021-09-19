@@ -1,5 +1,30 @@
 .summary {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  display: flex;
+  margin: auto;
+  margin-left: 4rem;
+}
+
+.summaryLeft {
+  width: 10rem;
+}
+
+.summaryLeft > h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.summaryRight {
+  width: 12rem;
+}
+
+.summaryRight > h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.detail {
+  margin: auto;
+  margin-left: 4rem;
   display: block;
-  margin-left: 1rem;
 }

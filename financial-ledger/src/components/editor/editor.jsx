@@ -13,7 +13,7 @@ const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, del
         <span className={styles.textBox}>현금</span>
         <span className={styles.textBox}>카드</span>
         <span className={styles.textBox}>분류</span>
-        <span className={styles.textBox}>기타</span>
+        <span className={styles.textBox}>메모</span>
         <span className={styles.textBox}>사진첨부</span>
         <span className={styles.textBox}>추가/삭제</span>
       </div>
