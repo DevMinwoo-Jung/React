@@ -21,7 +21,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   const [orginalRecords, setOrginalRecords] = useState({});
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
-  const [firstRender, setFirstRender] = useState(true);
+  const [firstRender, setFirstRender] = useState(false);
 
   let startRef = useRef();
   let endRef = useRef();
@@ -53,15 +53,16 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     });
   }, [userId, history, authService]);
 
-  useEffect(() => {
-    if (firstRender === true) {
-      recordRepository.syncRecords(userId, records => {
-        setRecords(records);
-        setFirstRender(false);
-      });
-    }
-  }, [firstRender]);
-  console.log(firstRender);
+  // useEffect(() => {
+  //   if (firstRender === false) {
+  //     recordRepository.syncRecords(userId, records => {
+  //       setRecords(records);
+  //       setFirstRender(true);
+  //     });
+  //   }
+  //   alert("이제 안타지 않나");
+  // }, [firstRender]);
+  // console.log(firstRender);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -126,7 +127,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   }
 
   const createOrUpdateRecord = record => {
-      setRecords(records => {
+    setRecords(records => {
       const updated = {...records};
       updated[record.id] = record;
       return updated;
