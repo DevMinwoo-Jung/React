@@ -21,7 +21,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   const [orginalRecords, setOrginalRecords] = useState({});
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
-  const [firstRender, setFirstRender] = useState();
+  const [firstRender, setFirstRender] = useState(true);
 
   let startRef = useRef();
   let endRef = useRef();
@@ -29,7 +29,6 @@ const Maker = ({FileInput, authService, recordRepository }) => {
 
   const onLogout = useCallback(() => {
     authService.logout();
-    setFirstRender(false);
   }, [authService]);
 
   
@@ -54,15 +53,15 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     });
   }, [userId, history, authService]);
 
-
   useEffect(() => {
-    if (!firstRender) {
+    if (firstRender === true) {
       recordRepository.syncRecords(userId, records => {
         setRecords(records);
+        setFirstRender(false);
       });
-      setFirstRender(true);
     }
   }, [firstRender]);
+  console.log(firstRender);
 
   const onSubmit = (event) => {
     event.preventDefault();

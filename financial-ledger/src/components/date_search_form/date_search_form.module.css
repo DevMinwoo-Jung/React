@@ -10,3 +10,11 @@
 .search__form > * {
   margin-left: 1rem;
 }
+
+.datesPicker {
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5%;
+}

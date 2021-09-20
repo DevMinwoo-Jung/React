@@ -6,8 +6,8 @@ const DateSearchForm = ({onSubmit, startRef, endRef}) => {
   return (
     <div className={styles.search__div}>
       <form className={styles.search__form}>
-        <input ref={startRef} type="date"  />
-        <input ref={endRef} type="date" />
+        <input className={styles.datesPicker} ref={startRef} type="date"  />
+        <input className={styles.datesPicker} ref={endRef} type="date" />
         <button onClick={onSubmit}>클릭</button>
       </form>
     </div>

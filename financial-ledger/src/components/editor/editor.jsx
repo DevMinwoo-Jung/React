@@ -15,14 +15,12 @@ const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, del
         <span className={styles.textBox}>메모</span>
         <span className={styles.textBox}>사진첨부</span>
         <span className={styles.textBox}>추가/삭제</span>
-      <div className={styles.addAndEdit}>
       <RecordAddForm FileInput={FileInput} onAdd={addRecord}/>  
       {
         Object.keys(records).map(key => (
           <RecordEditForm FileInput={FileInput} onUpdate={onUpdate} key={key} record={records[key]} updateRecord={updateRecord} deleteRecord={deleteRecord}/>
         ))
       }
-      </div>
     </div>
   );
 });

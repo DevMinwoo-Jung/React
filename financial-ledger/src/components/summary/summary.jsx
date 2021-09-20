@@ -3,8 +3,6 @@ import styles from './summary.module.css'
 
 const Summary = ({records ,dates}) => {
 
-  console.log(dates);
-
   const total = Object.keys(records)
   .map(key => records[key])
   .filter(record => record['category'])
@@ -77,81 +75,90 @@ const Summary = ({records ,dates}) => {
   
 
   return (
+    <>
     <div className={styles.summary}>
       {
         (dates['start'] === '' & dates['end'] === '') ? 
-        <div className={styles.summaryLeft}>
-          <h1>현재까지</h1><br/>
-          <h1>지출</h1><br/>
-          <h1>내역은</h1> 
+        <div className={styles.summaryUpper}>
+          <span>현재까지 지출 내역은</span><br/>
+          <span>---------------------------------------------------------------------------</span>
         </div>
         : null
       }
       {
         (dates['start'] !== '' || dates['end'] !== '') ? 
-        <div className={styles.summaryRight}>
-          <h1>{dates['start']} 부터</h1><br/>
-          <h1>{dates['end']}까지</h1><br/>
-          <h1>지출 내역은</h1> 
+        <div className={styles.summaryUpper}>
+          <span>{dates['start']} 부터 {dates['end']}까지 지출 내역은</span> <br/>
+          <span>---------------------------------------------------------------------------</span>
         </div>
         : null
       }
-      <br/>
       <div className={styles.detail}>  
-        <span>식비 Total:</span>
         {
           Number(totalFoods) !== 0 &&
-          <span>{totalFoods}원</span>
+          <>
+          <span>식비 Total: {totalFoods}원</span>
+          <br/>
+          </>
         }
-        <br/>
-        <span>주거비용 Total:</span>
         {
           Number(totalRents) !== 0 &&
-          <span>{totalRents}원</span>
+          <>
+          <span>주거비용 Total: {totalRents}원</span>
+          <br/>
+          </>
         }
-        <br/>
-        <span>생필품 Total:</span>
         {
           Number(totalDaily) !== 0 &&
-          <span>{totalDaily}원</span>
+          <>
+          <span>생필품 Total: {totalDaily}원</span>
+          <br/>
+          </>
         }
-        <br/>
-        <span>건강/문화 Total:</span>
+        
         {
           Number(totalHealthCulture) !== 0 &&
-          <span>{totalHealthCulture}원</span>
+          <>
+          <span>문화/여가: {totalHealthCulture}원</span>
+          <br/>
+          </>
         }
-        <br/>
-        <span>교육비 Total:</span>
         {
           Number(totalEducation) !== 0 &&
-          <span>{totalEducation}원</span>
+          <>
+          <span>교육비 Total: {totalEducation}원</span>
+          <br/>
+          </>
         }
-        <br/>
-        <span>교통비 Total:</span>
         {
           Number(totalTransportation) !== 0 &&
-          <span>{totalTransportation}원</span>
+          <>
+          <span>교통비 Total: {totalTransportation}원</span>
+          <br/>
+          </>
         }
-        <br/>
-        <span>할부 Total:</span>
         {
           Number(totalInstallment) !== 0 &&
-          <span>{totalInstallment}원</span>
+          <>
+          <span>할부 Total: {totalInstallment}원</span>
+          <br/>
+          </>
         }
-        <br/>
-        <span>기타 Total:</span>
         {
           Number(totalEtc) !== 0 &&
-          <span>{totalEtc}원</span>
+          <>
+          <span>기타 Total: {totalEtc}원</span>
+          <br/>
+          </>
         }
-        <br/>
+        <span>---------------------------------------------------------------------------</span><br/>
         <span>총 지출: {totalCost}원</span>
         <br/>
         <span>가장 큰 지출: {maxCost}원</span>
         <br/>
       </div>  
     </div>
+    </>
   );
 };
 

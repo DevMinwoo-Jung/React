@@ -5,7 +5,6 @@ import styles from './receipt.module.css'
 const Receipt = ({record}) => {
   const {fileURL, etc, date} = record;
   const url = fileURL;
-  console.log(record);
   return (
     <>
     {

@@ -1,17 +1,25 @@
 .summary {
   font-size: 1rem;
-  display: flex;
+  display: block;
   margin: auto;
-  margin-left: 4rem;
+  margin-left: 10rem;
+  -webkit-box-shadow: 5px 5px 15px -6px #000000;
+  box-shadow: 5px 5px 15px -6px #000000;
+  width: 30rem;
+  height: 20rem;
+  border-radius: 0 0 10% 10%;
 }
 
-.summaryLeft {
-  width: 10rem;
+.summaryUpper {
+  width: 26rem;
+  margin: 1rem 1rem 0rem 1rem;
 }
 
-.summaryLeft > h1 {
+.summaryUpper > span {
   margin-top: 0px;
   margin-bottom: 0px;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .summaryRight {
@@ -25,6 +33,6 @@
 
 .detail {
   margin: auto;
-  margin-left: 4rem;
+  margin-left: 2rem;
   display: block;
 }
