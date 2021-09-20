@@ -5,5 +5,8 @@
 .display {
   display: flex;
   position: relative;
-  overflow-x: hidden;
+}
+
+.editor {
+  overflow-y: hidden;
 }

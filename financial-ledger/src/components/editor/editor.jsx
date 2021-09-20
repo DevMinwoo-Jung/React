@@ -6,8 +6,7 @@ import styles from './editor.module.css';
 const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
 
   return (
-    <div className={styles.addAndEdit}>
-      <div>
+    <div className={styles.informations}>
         <span className={styles.textBox}>날짜</span>
         <span className={styles.textBox}>사용내역</span>
         <span className={styles.textBox}>현금</span>
@@ -16,13 +15,14 @@ const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, del
         <span className={styles.textBox}>메모</span>
         <span className={styles.textBox}>사진첨부</span>
         <span className={styles.textBox}>추가/삭제</span>
-      </div>
+      <div className={styles.addAndEdit}>
       <RecordAddForm FileInput={FileInput} onAdd={addRecord}/>  
       {
         Object.keys(records).map(key => (
           <RecordEditForm FileInput={FileInput} onUpdate={onUpdate} key={key} record={records[key]} updateRecord={updateRecord} deleteRecord={deleteRecord}/>
         ))
       }
+      </div>
     </div>
   );
 });

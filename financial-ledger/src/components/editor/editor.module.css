@@ -1,9 +1,15 @@
-.addAndEdit {
+.informations {
   margin: auto;
-  width: 115rem;
+  width: 100%;
   height: 25rem;
   display: block;
-  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.informations::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .textBox {

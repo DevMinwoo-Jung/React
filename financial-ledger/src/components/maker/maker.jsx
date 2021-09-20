@@ -8,6 +8,8 @@ import Summary from '../summary/summary';
 import styles from './maker.module.css';
 
 
+
+
 const Maker = ({FileInput, authService, recordRepository }) => {
 
 
@@ -19,6 +21,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   const [orginalRecords, setOrginalRecords] = useState({});
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
+  const [firstRender, setFirstRender] = useState();
 
   let startRef = useRef();
   let endRef = useRef();
@@ -26,6 +29,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
 
   const onLogout = useCallback(() => {
     authService.logout();
+    setFirstRender(false);
   }, [authService]);
 
   
@@ -50,9 +54,15 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     });
   }, [userId, history, authService]);
 
+
   useEffect(() => {
-    setRecords(records);
-  }, [records]);
+    if (!firstRender) {
+      recordRepository.syncRecords(userId, records => {
+        setRecords(records);
+      });
+      setFirstRender(true);
+    }
+  }, [firstRender]);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -60,7 +70,6 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     endRef = endRef.current.value;
     onUpdate(startRef, endRef);
     modifyDates(startRef, endRef);
-    console.log(records);
   }
 
   const modifyDates = (startRef, endRef) => {
@@ -147,7 +156,9 @@ const Maker = ({FileInput, authService, recordRepository }) => {
       <Receipts records={records} key={Math.random()}/>
       <Summary records={records} dates={dates} sumCost={sumCost} maxCost={maxCost}  />
     </div>
+    <div className={styles.editor}>
       <Editor FileInput={FileInput} records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    
+    </div>
     </section>
     </>
   );

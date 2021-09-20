@@ -1,8 +1,9 @@
 .receipt {
+  border-radius: 10%;
+  box-shadow: 1px 6px 14px 5px #000000;
   width: 14rem;
   height: 16.5rem;
   min-width: 12rem;
-  border: 1px solid black;
   margin: 1rem;
   text-align: center;
   position: relative;
@@ -13,4 +14,5 @@
   margin-top: 10px;
   width: 13rem;
   height: 11rem;
+  border-radius: 5%;
 }
