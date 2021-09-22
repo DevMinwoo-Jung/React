@@ -5,6 +5,7 @@
 
 .search__form {
   margin: auto;
+  display: flex;
 }
 
 .search__form > * {
@@ -17,4 +18,25 @@
   font-weight: bold;
   text-align: center;
   border-radius: 5%;
+}
+
+.container {
+  position: relative;
+  width: 12%;
+}
+
+.searchImg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.searchImg:hover {
+  transform: scale(1.1);
 }

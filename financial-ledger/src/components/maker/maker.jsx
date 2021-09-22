@@ -36,12 +36,21 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     if(!userId){
       return;
     }
+    if(firstRender === true){
     const stopSync = recordRepository.syncRecords(userId, records => {
       setOrginalRecords(records);
       setNewRecords(records);
     })
     return () => stopSync();
-  }, [userId, recordRepository]);
+    } else {
+      const stopSync = recordRepository.syncRecords(userId, records => {
+        setOrginalRecords(records);
+        setNewRecords(records);
+        setRecords(records);
+      })
+      return () => stopSync();
+    }
+  }, [userId, recordRepository, firstRender]);
 
   useEffect(() => {
     authService.onAuthChange(user => {
@@ -53,16 +62,6 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     });
   }, [userId, history, authService]);
 
-  // useEffect(() => {
-  //   if (firstRender === false) {
-  //     recordRepository.syncRecords(userId, records => {
-  //       setRecords(records);
-  //       setFirstRender(true);
-  //     });
-  //   }
-  //   alert("이제 안타지 않나");
-  // }, [firstRender]);
-  // console.log(firstRender);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -80,6 +79,8 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   }
 
   const onUpdate = (startRef, endRef ) => {
+    setFirstRender(true);
+    console.log(firstRender);
     setNewRecords(orginalRecords);
       if((startRef === '') & (endRef === '')){
         setNewRecords({...orginalRecords});

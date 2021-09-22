@@ -8,7 +8,9 @@ const DateSearchForm = ({onSubmit, startRef, endRef}) => {
       <form className={styles.search__form}>
         <input className={styles.datesPicker} ref={startRef} type="date"  />
         <input className={styles.datesPicker} ref={endRef} type="date" />
-        <button onClick={onSubmit}>클릭</button>
+        <div className={styles.container}>
+          <img className={styles.searchImg} onClick={onSubmit} src="/images/search.png" alt="" />
+        </div>
       </form>
     </div>
   );
