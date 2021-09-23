@@ -1,5 +1,5 @@
 import React, { memo, useRef } from 'react';
-import Button from '../../button/button';
+import Button from '../button/button';
 import styles from './record_edit_form.module.css';
 
 const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) => {
@@ -7,12 +7,10 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
   const formRef = useRef();
   const dateRef = useRef(); 
   const costRef = useRef(); 
-  const cashRef = useRef();
-  const cardsRef = useRef();
   const categoryRef = useRef();
   const etcRef = useRef();
 
-  const {date, cost, cash, cards, category, etc, fileName} = record;
+  const {date, cost,category, etc, fileName} = record;
 
   const onFileChange = file => {
     updateRecord({
@@ -39,12 +37,12 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
 };
 
 
+
+
   return (
     <form className={styles.form} ref={formRef}>
       <input className={styles.inputs} ref={dateRef} type="date" name="date" value={date} onChange={onChange}/>
       <input className={styles.inputs} ref={costRef} type="number" name="cost" value={cost} onChange={onChange}/>
-      <input className={styles.inputs} ref={cashRef} type="text" name="cash" value={cash} onChange={onChange}/>
-      <input className={styles.inputs} ref={cardsRef} type="text" name="cards" value={cards} onChange={onChange}/>
       <select ref={categoryRef} className={styles.inputs} name="category"  value={category} onChange={onChange} >
                         <option value=""></option>
                         <option value="foods">식비</option>
@@ -58,7 +56,7 @@ const RecordEditForm = memo(({FileInput, record, updateRecord, deleteRecord}) =>
         </select>
       <input className={styles.inputs} ref={etcRef} type="text" name="etc" value={etc} onChange={onChange}/>
     <FileInput name={fileName} onFileChange={onFileChange}/>
-    <Button name='Delete' onClick={onSubmit} />
+    <Button name='삭제' onClick={onSubmit} />
     </form>
   );
 });

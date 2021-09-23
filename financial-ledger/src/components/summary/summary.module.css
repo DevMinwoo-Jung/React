@@ -1,3 +1,5 @@
+@value laptop from '../../common/size.css';
+
 .summary {
   font-size: 1rem;
   display: block;
@@ -35,4 +37,11 @@
   margin: auto;
   margin-left: 2rem;
   display: block;
+}
+
+@media screen and (max-width: laptop) {
+  .summary {
+    margin: auto;
+    margin-bottom: 1rem;
+  }
 }

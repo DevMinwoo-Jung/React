@@ -21,7 +21,7 @@ const ImageFileInput = memo(({imageUploader, name, onFileChange}) => {
   return(
   <div className={styles.container}>
     <input ref={inputRef} className={styles.input} type="file" accept="image/*" name="file" onChange={onChange}/>
-      {!loading && (<button className={`${styles.button} ${name ? styles.pink : styles.grey}`} onClick={onButtonClick}>  {name || 'No file'}  </button>)}
+      {!loading && (<button className={`${styles.button} ${name ? styles.yellow : styles.grey}`} onClick={onButtonClick}>  {name || '사진이 없습니다.'}  </button>)}
       {loading && <div className={styles.loading}></div>}
   </div>
   )

@@ -5,10 +5,10 @@ const Header = memo(({onLogout}) => (
     <header className={styles.header}>
     {onLogout && (
       <button className={styles.logout} onClick={onLogout}>
-        Logout
+        로그아웃
       </button>
     )}
-    <img className={styles.logo} src="/images/logo.png" alt="logo" />
+    <img className={styles.logo} src="/images/money.png" alt="logo" />
     <h1 className={styles.title}>Financial Ledger</h1>
   </header>
 ));

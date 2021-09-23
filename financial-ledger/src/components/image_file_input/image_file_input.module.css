@@ -1,8 +1,7 @@
-@value makerLightGrey, makerPink, makerLightPink from "../../common/colors.css";
+@value makerYellow, makerLightGrey, makerPink, makerLightPink from "../../common/colors.css";
 
 .container {
-  width: 12%;
-  margin: 2px;
+  width: calc(100% / 6);
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -27,8 +26,8 @@
   background-color: makerLightGrey;
 }
 
-.button.pink {
-  background-color: makerLightPink;
+.button.yellow {
+  background-color: makerYellow;
 }
 
 .button:hover {
@@ -42,6 +41,7 @@
   border: 2.5px solid makerLightGrey;
   border-top: 1px solid makerPink;
   animation: spin 2s linear infinite;
+  margin: auto;
 }
 
 @keyframes spin {

@@ -1,6 +1,5 @@
 .button {
-  width: 12%;
-  margin: 2px;
+  width: calc(100% / 6);
   display: flex;
   border: 1px solid #ccc;
   border-radius: 4px;

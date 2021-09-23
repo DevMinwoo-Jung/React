@@ -41,7 +41,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
       setOrginalRecords(records);
       setNewRecords(records);
     })
-    return () => stopSync();
+      return () => stopSync();
     } else {
       const stopSync = recordRepository.syncRecords(userId, records => {
         setOrginalRecords(records);
@@ -78,9 +78,8 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     })
   }
 
-  const onUpdate = (startRef, endRef ) => {
+  const onUpdate = (startRef, endRef) => {
     setFirstRender(true);
-    console.log(firstRender);
     setNewRecords(orginalRecords);
       if((startRef === '') & (endRef === '')){
         setNewRecords({...orginalRecords});
@@ -146,6 +145,43 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     recordRepository.removeRecord(userId, record);
   };
 
+  const onDesc = () => {
+    
+  }
+
+  const onAsc = () => {
+    // console.log(Object.keys(records).map(key => records[key]).sort((a,b) => a['date'] - b['date']));
+    // console.log(Object.keys(records).map(key => records[key]).sort((a,b) => a['date'] - b['date']).map(records => records['date']));
+    
+    // setRecords(Object.keys(records).map(key => records[key]).sort((a,b) => a - b));
+
+    let first;
+    let second;
+    
+    console.log(records);
+    // let sortRecords = Object.keys(records).map(key => records[key]['date']).map(records => records.replaceAll('-', '')).sort((a, b) => a - b);
+    let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] > b['date'] ? 1: -1);
+    let newKey = sortRecords.map(records =>  records['id']);
+    
+    for(let i=0; i<sortRecords.length; i++){
+      
+    }
+    // // sort((a,b) => [a]['date'] - [b]['date'])
+    // // map(records => console.log(records['date']));
+    // console.log(sortRecords);
+
+    // for(let key in records){
+    //   console.log(records[key]['date']);
+    // }
+    console.log(sortRecords);
+    console.log(newKey);
+    
+    setRecords(sortRecords);
+
+    
+
+  }
+
   return (
     <>
     <Header onLogout={onLogout} />
@@ -158,7 +194,7 @@ const Maker = ({FileInput, authService, recordRepository }) => {
       <Summary records={records} dates={dates} sumCost={sumCost} maxCost={maxCost}  />
     </div>
     <div className={styles.editor}>
-      <Editor FileInput={FileInput} records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    
+      <Editor onAsc={onAsc} onDesc={onDesc} FileInput={FileInput} records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    
     </div>
     </section>
     </>

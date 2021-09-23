@@ -1,14 +1,11 @@
 import React, { useRef, useState } from 'react';
-
-import Button from '../../button/button';
+import Button from '../button/button';
 import styles from './record_add_form.module.css';
 
 const RecordAddForm = ({FileInput, onAdd}) => {
   const formRef = useRef();
   const dateRef = useRef();
   const costRef = useRef();
-  const cashRef = useRef();
-  const cardsRef = useRef();
   const categoryRef = useRef();
   const etcRef = useRef();
   const [file, setFile] = useState({fileName: null, fileURL: null});
@@ -19,8 +16,6 @@ const RecordAddForm = ({FileInput, onAdd}) => {
       id: Date.now(),
       date: dateRef.current.value || '',
       cost: costRef.current.value || '',
-      cash: cashRef.current.value || '',
-      cards: cardsRef.current.value || '',
       category: categoryRef.current.value || '',
       etc: etcRef.current.value || '',
       fileName: file.fileName || '',
@@ -43,8 +38,6 @@ const RecordAddForm = ({FileInput, onAdd}) => {
       <form className={styles.form} ref={formRef}>
         <input className={styles.inputs} ref={dateRef} type="date" name="date"/>
         <input className={styles.inputs} ref={costRef} type="number" name="cost" />
-        <input className={styles.inputs} ref={cashRef} type="text" name="cash"/>
-        <input className={styles.inputs} ref={cardsRef} type="text" name="cards"/>
         <select ref={categoryRef}className={styles.inputs} name="theme" >
                         <option value=""></option>
                         <option value="foods">식비</option>
@@ -58,7 +51,7 @@ const RecordAddForm = ({FileInput, onAdd}) => {
         </select>
         <input className={styles.inputs} ref={etcRef} type="text" name="etc"/>
       <FileInput name={file.fileName} onFileChange={onFileChange}/>
-      <Button name="Add Record" onClick={onSubmit}/>
+      <Button name="추가" onClick={onSubmit}/>
       </form>
   );
 };

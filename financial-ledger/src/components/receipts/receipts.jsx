@@ -5,28 +5,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from './receipts.module.css'
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", color: "black", background: "gray"}}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "green" }}
-      onClick={onClick}
-    />
-  );
-}
-
 const Receipts = ({records}) => {
 
   const settings = {
@@ -35,8 +13,7 @@ const Receipts = ({records}) => {
     speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 3,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+
   };
   const length =   Object.keys(records)
   .map(key => records[key])

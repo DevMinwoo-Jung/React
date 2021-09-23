@@ -1,4 +1,4 @@
-@value makerBlack, makerBlue, makerWhite, makerGreen from '../../common/colors.css';
+@value makerYellow, makerBlack, makerBlue, makerWhite, makerGreen from '../../common/colors.css';
 @value mediaQuery from '../../common/size.css';
 
 .login {
@@ -8,32 +8,31 @@
 }
 
 .loginLeft {
-  background-color: makerGreen;
+  background-color: makerYellow;
   color: makerBlack;
   height: 100vh;
   min-width: 50%;
   text-align: left;
-  padding-top: 10rem;
+  padding-top: 7%;
 }
 
 .won {
   font-size: 4rem;
-  margin-left: 4rem;
+  margin-left: 10%;
 }
 
 .loginLeftBigFont {
   display: block;
-  margin-left: 4rem;
-  margin-top: 2rem;
-  font-size: 2rem;
+  margin-left: 15%;
+  font-size: 4rem;
   font-weight: bold;
 }
 
 .loginLeftsmallFont {
   display: block;
-  margin-left: 3rem;
-  margin-top: 2rem;
-  font-size: 1.2rem;
+  margin-left: 15%;
+  margin-top: 5%;
+  font-size: 1.5rem;
   font-weight: 520;
 }
 
@@ -58,7 +57,13 @@
 }
 
 .item {
+  vertical-align: middle;
   text-align: center;
+}
+
+.logoPara {
+  font-size: 3rem;
+  margin-left: 1rem;
 }
 
 .button {
@@ -67,13 +72,22 @@
   margin-top: 2rem;
   border-radius: 10%;
   background-color: makerWhite;
-  border: 0.2rem solid makerBlue;
-  font-size: 2rem;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: rgba(81, 141, 255, 1);
+  background-color: rgba(248, 248, 248, 0.76);
+}
+
+.logo {
+  width: 5rem;
+  height: 5rem;
+  margin-right: 1rem;
+}
+
+.loginLogo {
+  width: 3rem;
+  height: 3rem;
 }
 
 @media screen and (max-width: mediaQuery) {

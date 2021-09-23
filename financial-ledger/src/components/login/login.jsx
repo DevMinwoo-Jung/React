@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './login.module.css'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faWonSign } from '@fortawesome/free-solid-svg-icons'
 
 
 const Login = ({authService}) => {
@@ -30,7 +28,6 @@ const Login = ({authService}) => {
   return(
     <section className={styles.login}>
       <div className={styles.loginLeft}>
-      {/* <FontAwesomeIcon icon={faWonSign} className={styles.won}/> */}
         <span className={styles.loginLeftBigFont}>
           이번달은 먹은거 
           <br/>밖에 없는데
@@ -43,14 +40,21 @@ const Login = ({authService}) => {
       </div>
       <div className={styles.loginRight}>  
         <ul className={styles.list}>
-        <li className={styles.item}>
+          <li className={styles.item}>
+            <img className={styles.logo} src="/images/money.png" alt="logo" />
             <span className={styles.loginRightFont}>로그인하기</span>
           </li>
           <li className={styles.item}>
-            <button className={styles.button} onClick={onLogin}>Google</button>
+            <button className={styles.button} onClick={onLogin}>            
+              <img src="/images/google.png" alt="" className={styles.loginLogo} />
+              <span className={styles.logoPara}>Google</span>
+            </button>
           </li>
           <li className={styles.item}>
-            <button className={styles.button} onClick={onLogin}>Github</button>
+            <button className={styles.button} onClick={onLogin}>
+              <img src="/images/github.png" alt="" className={styles.loginLogo}/>
+              <span className={styles.logoPara}>Github</span>
+            </button>
           </li>
         </ul>
       </div>

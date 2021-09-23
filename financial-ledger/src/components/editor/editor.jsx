@@ -3,14 +3,23 @@ import RecordEditForm from '../record_edit_form/record_edit_form';
 import RecordAddForm from '../record_add_form/record_add_form';
 import styles from './editor.module.css';
 
-const Editor = memo(({FileInput, records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
+const Editor = memo(({onAsc, onDesc, FileInput, records, onUpdate, addRecord, updateRecord, deleteRecord}) => {
+
+  const goAsc = () => {
+    onAsc();
+  }
+
+  const goDesc = () =>{
+    onDesc();
+  }
 
   return (
     <div className={styles.informations}>
-        <span className={styles.textBox}>날짜</span>
-        <span className={styles.textBox}>사용내역</span>
-        <span className={styles.textBox}>현금</span>
-        <span className={styles.textBox}>카드</span>
+        <span className={styles.textBox}>날짜
+          <button onClick={goAsc}>오름차순</button>
+          <button onClick={goDesc}>내림차순</button>
+        </span>
+        <span className={styles.textBox}>지출비용</span>
         <span className={styles.textBox}>분류</span>
         <span className={styles.textBox}>메모</span>
         <span className={styles.textBox}>사진첨부</span>
