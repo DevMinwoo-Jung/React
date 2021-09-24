@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router';
 import DateSearchForm from '../date_search_form/date_search_form';
 import Editor from '../editor/editor';
@@ -10,7 +10,7 @@ import styles from './maker.module.css';
 
 
 
-const Maker = ({FileInput, authService, recordRepository }) => {
+const Maker = memo(({FileInput, authService, recordRepository }) => {
 
 
   const history = useHistory();
@@ -22,10 +22,14 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   const [maxCost, setMaxCost] = useState();
   const [sumCost, setSumCost] = useState();
   const [firstRender, setFirstRender] = useState(false);
+  const [dates, setDates] = useState({start: '', end: ''});
 
   let startRef = useRef();
   let endRef = useRef();
-  const [dates, setDates] = useState({start: '', end: ''});
+
+  
+
+
 
   const onLogout = useCallback(() => {
     authService.logout();
@@ -146,41 +150,65 @@ const Maker = ({FileInput, authService, recordRepository }) => {
   };
 
   const onDesc = () => {
+    let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] < b['date'] ? 1: -1).map(records => records);
+  
+    let newKey = sortRecords.map(records =>  records['id']);
+    let myObj = {};
+
+    // if(sortRecords[i]['date'] !== ''){
+    //   console.log(sortRecords[i] + '');
+    //   myObj[newKey[i]] = sortRecords[i];
+    // } else {
+    //   console.log(sortRecords[i]);
+    //   delete sortRecords[i];
+    // }
+
+    console.log(sortRecords.length);
+    for(let i=0; i<sortRecords.length;i++){
+      if(sortRecords[i]['date'] === ''){
+        delete sortRecords[i];
+      } else {
+        myObj[newKey[i]] = sortRecords[i];
+      }
+    }
+    console.log(myObj);
+
+
+    
+    setRecords(myObj);
+    setNewRecords(myObj);
     
   }
+
+
 
   const onAsc = () => {
-    // console.log(Object.keys(records).map(key => records[key]).sort((a,b) => a['date'] - b['date']));
-    // console.log(Object.keys(records).map(key => records[key]).sort((a,b) => a['date'] - b['date']).map(records => records['date']));
-    
-    // setRecords(Object.keys(records).map(key => records[key]).sort((a,b) => a - b));
-
-    let first;
-    let second;
-    
-    console.log(records);
-    // let sortRecords = Object.keys(records).map(key => records[key]['date']).map(records => records.replaceAll('-', '')).sort((a, b) => a - b);
-    let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] > b['date'] ? 1: -1);
+  
+    let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] > b['date'] ? 1: -1).map(records => records);
+  
     let newKey = sortRecords.map(records =>  records['id']);
-    
-    for(let i=0; i<sortRecords.length; i++){
-      
-    }
-    // // sort((a,b) => [a]['date'] - [b]['date'])
-    // // map(records => console.log(records['date']));
-    // console.log(sortRecords);
+    let myObj = {};
 
-    // for(let key in records){
-    //   console.log(records[key]['date']);
-    // }
-    console.log(sortRecords);
-    console.log(newKey);
+    for(let i=0; i<sortRecords.length;i++){
+      if(sortRecords[i]['date'] === ''){
+        delete sortRecords[i];
+      } else {
+        myObj[newKey[i]] = sortRecords[i];
+      }
+    }
+
+
     
-    setRecords(sortRecords);
+    setRecords(myObj);
+    setNewRecords(myObj);
+
 
     
 
   }
+
+
+
 
   return (
     <>
@@ -199,6 +227,6 @@ const Maker = ({FileInput, authService, recordRepository }) => {
     </section>
     </>
   );
-};
+});
 
 export default Maker;
