@@ -150,66 +150,30 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     recordRepository.removeRecord(userId, record);
   };
 
-  const onDesc = () => {
-    setFirstRender(true);
-    let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] < b['date'] ? 1: -1).map(records => records);
-
-    let newKey = sortRecords.map(records =>  records['id']);
-    let myObj = {};
-
-    // if(sortRecords[i]['date'] !== ''){
-    //   console.log(sortRecords[i] + '');
-    //   myObj[newKey[i]] = sortRecords[i];
-    // } else {
-    //   console.log(sortRecords[i]);
-    //   delete sortRecords[i];
-    // }
-
-    console.log(sortRecords.length);
-    for(let i=0; i<sortRecords.length;i++){
-      if(sortRecords[i]['date'] === ''){
-        delete sortRecords[i];
-      } else {
-        myObj[newKey[i]] = sortRecords[i];
-      }
-    }
-    console.log(myObj);
-
-
-    setNewRecords(myObj);
-    setRecords(myObj);
-
-  }
-
-
-
+  
   const onAsc = () => {
+    alert("오름차순~");
+    setRecords(newRecords);
     setFirstRender(true);
-    alert("야호");
-  
-    setNewRecords({...orginalRecords});
-    let sortRecords = Object.keys(newRecords).map(key => newRecords[key]).sort((a, b) => a['date'] > b['date'] ? 1: -1).map(newRecords => newRecords);
-  
+
+    let sortRecords = Object.keys(records).map(key => records[key])
+    .sort(function (a, b) 
+    {
+      if(a['date'] > b['date']){
+        return 1;
+      } else if (a['date'] === b['date']){
+        return 0;
+      } else {
+        return -1;
+      }
+    }
+    ).map(records => records);
+
     let newKey = sortRecords.map(records =>  records['id']);
     let myObj = {};
 
-    // for(let key in newRecords){
-    //   if(!(newRecords[key].date >= startRef && newRecords[key].date <= endRef)){
-    //     delete newRecords[key];
-    //   }
-    // }
-
-    // for(let key in sortRecords){
-    //   if(sortRecords[key]['date'] !== null){
-    //     myObj[newKey[key]] = sortRecords[key];
-    //   } else {
-    //     delete sortRecords[key];
-    //   }
-    // }
-
     for(let i=0; i<sortRecords.length;i++){
       if(sortRecords[i]['date'] === ''){
-        console.log(sortRecords[i]);
         delete sortRecords[i];
       } else {
         myObj[newKey[i]] = sortRecords[i];
@@ -219,12 +183,48 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     
     
     setRecords(myObj);
-   
+  
 
 
     
 
   }
+
+  const onDesc = () => {
+    setRecords(newRecords);
+    setFirstRender(true);
+    // let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] < b['date'] ? 1: -1).map(records => records);
+
+
+    let sortRecords = Object.keys(records).map(key => records[key])
+    .sort(function (a, b) 
+    {
+      if(a['date'] > b['date']){
+        return -1;
+      } else if (a['date'] === b['date']){
+        return 0;
+      } else {
+        return 1;
+      }
+    }
+    ).map(records => records);
+    let newKey = sortRecords.map(records =>  records['id']);
+    let myObj = {};
+
+    for(let i=0; i<sortRecords.length;i++){
+      if(sortRecords[i]['date'] === ''){
+        delete sortRecords[i];
+      } else {
+        myObj[newKey[i]] = sortRecords[i];
+      }
+    }
+
+    setRecords(myObj);
+
+  }
+
+
+
 
 
 
