@@ -24,6 +24,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
   const [firstRender, setFirstRender] = useState(false);
   const [dates, setDates] = useState({start: '', end: ''});
 
+
   let startRef = useRef();
   let endRef = useRef();
 
@@ -150,8 +151,9 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
   };
 
   const onDesc = () => {
+    setFirstRender(true);
     let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] < b['date'] ? 1: -1).map(records => records);
-  
+
     let newKey = sortRecords.map(records =>  records['id']);
     let myObj = {};
 
@@ -174,33 +176,50 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     console.log(myObj);
 
 
-    
-    setRecords(myObj);
     setNewRecords(myObj);
-    
+    setRecords(myObj);
+
   }
 
 
 
   const onAsc = () => {
+    setFirstRender(true);
+    alert("야호");
   
-    let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] > b['date'] ? 1: -1).map(records => records);
+    setNewRecords({...orginalRecords});
+    let sortRecords = Object.keys(newRecords).map(key => newRecords[key]).sort((a, b) => a['date'] > b['date'] ? 1: -1).map(newRecords => newRecords);
   
     let newKey = sortRecords.map(records =>  records['id']);
     let myObj = {};
 
+    // for(let key in newRecords){
+    //   if(!(newRecords[key].date >= startRef && newRecords[key].date <= endRef)){
+    //     delete newRecords[key];
+    //   }
+    // }
+
+    // for(let key in sortRecords){
+    //   if(sortRecords[key]['date'] !== null){
+    //     myObj[newKey[key]] = sortRecords[key];
+    //   } else {
+    //     delete sortRecords[key];
+    //   }
+    // }
+
     for(let i=0; i<sortRecords.length;i++){
       if(sortRecords[i]['date'] === ''){
+        console.log(sortRecords[i]);
         delete sortRecords[i];
       } else {
         myObj[newKey[i]] = sortRecords[i];
       }
     }
 
-
+    
     
     setRecords(myObj);
-    setNewRecords(myObj);
+   
 
 
     
