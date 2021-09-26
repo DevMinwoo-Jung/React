@@ -19,18 +19,11 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
   const [records, setRecords] = useState({});
   const [newRecords, setNewRecords] = useState({});
   const [orginalRecords, setOrginalRecords] = useState({});
-  const [maxCost, setMaxCost] = useState();
-  const [sumCost, setSumCost] = useState();
   const [firstRender, setFirstRender] = useState(false);
   const [dates, setDates] = useState({start: '', end: ''});
 
-
   let startRef = useRef();
   let endRef = useRef();
-
-  
-
-
 
   const onLogout = useCallback(() => {
     authService.logout();
@@ -113,22 +106,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
           }
         }
         setRecords(newRecords);
-      
     }
-
-    let sum = 0;
-    for(let key in newRecords){
-      sum = sum + Number(newRecords[key].cost);
-    }
-    setSumCost(sum);
-
-    let max = 0;
-    for(let key in newRecords){
-      if(max < Number(newRecords[key].cost)){
-        max = Number(newRecords[key].cost);
-      }
-    }
-    setMaxCost(max);
   }
 
   const createOrUpdateRecord = record => {
@@ -152,10 +130,8 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
 
   
   const onAsc = () => {
-    alert("오름차순~");
     setRecords(newRecords);
     setFirstRender(true);
-
     let sortRecords = Object.keys(records).map(key => records[key])
     .sort(function (a, b) 
     {
@@ -168,10 +144,8 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
       }
     }
     ).map(records => records);
-
     let newKey = sortRecords.map(records =>  records['id']);
-    let myObj = {};
-
+    const myObj = {};
     for(let i=0; i<sortRecords.length;i++){
       if(sortRecords[i]['date'] === ''){
         delete sortRecords[i];
@@ -179,23 +153,12 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
         myObj[newKey[i]] = sortRecords[i];
       }
     }
-
-    
-    
     setRecords(myObj);
-  
-
-
-    
-
   }
 
   const onDesc = () => {
     setRecords(newRecords);
     setFirstRender(true);
-    // let sortRecords = Object.keys(records).map(key => records[key]).sort((a, b) => a['date'] < b['date'] ? 1: -1).map(records => records);
-
-
     let sortRecords = Object.keys(records).map(key => records[key])
     .sort(function (a, b) 
     {
@@ -209,7 +172,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     }
     ).map(records => records);
     let newKey = sortRecords.map(records =>  records['id']);
-    let myObj = {};
+    const myObj = {};
 
     for(let i=0; i<sortRecords.length;i++){
       if(sortRecords[i]['date'] === ''){
@@ -218,16 +181,8 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
         myObj[newKey[i]] = sortRecords[i];
       }
     }
-
     setRecords(myObj);
-
   }
-
-
-
-
-
-
 
   return (
     <>
@@ -238,7 +193,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     </div>
     <div className={styles.display}>
       <Receipts records={records} key={Math.random()}/>
-      <Summary records={records} dates={dates} sumCost={sumCost} maxCost={maxCost}  />
+      <Summary records={records} dates={dates} />
     </div>
     <div className={styles.editor}>
       <Editor onAsc={onAsc} onDesc={onDesc} FileInput={FileInput} records={records}  onUpdate={onUpdate} onSubmit={onSubmit} addRecord={createOrUpdateRecord} updateRecord={createOrUpdateRecord} deleteRecord={deleteRecord}/>    

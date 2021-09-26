@@ -22,3 +22,22 @@
   font-weight: bold;
   background-color: rgb(244, 247, 242);
 }
+
+.uploadIcon {
+  margin-left: 1rem;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.downLoadIcon {
+  margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.uploadIcon:hover,
+.downLoadIcon:hover {
+  transform: scale(1.1);
+}
