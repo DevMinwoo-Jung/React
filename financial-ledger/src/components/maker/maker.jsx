@@ -65,8 +65,8 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     event.preventDefault();
     startRef = startRef.current.value;
     endRef = endRef.current.value;
-    onUpdate(startRef, endRef);
     modifyDates(startRef, endRef);
+    onUpdate(startRef, endRef);
   }
 
   const modifyDates = (startRef, endRef) => {
@@ -74,6 +74,14 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
       start: startRef,
       end: endRef,
     })
+  }
+
+  const onResetDate = (event) => {
+    event.preventDefault();
+    startRef = '';
+    endRef = '';
+    modifyDates(startRef, endRef);
+    onUpdate(startRef, endRef);
   }
 
   const onUpdate = (startRef, endRef) => {
@@ -189,7 +197,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     <Header onLogout={onLogout} />
     <section className={styles.contents}>
     <div>
-      <DateSearchForm onSubmit={onSubmit} startRef={startRef} endRef={endRef} />
+      <DateSearchForm onSubmit={onSubmit} startRef={startRef} endRef={endRef} onResetDate={onResetDate} />
     </div>
     <div className={styles.display}>
       <Receipts records={records} key={Math.random()}/>
