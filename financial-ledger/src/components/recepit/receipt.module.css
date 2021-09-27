@@ -7,6 +7,7 @@
   margin: 1rem;
   text-align: center;
   position: relative;
+  background-color: white;
 }
 
 .receipt__img {
@@ -15,4 +16,18 @@
   width: 13rem;
   height: 11rem;
   border-radius: 5%;
+}
+
+.date {
+  height: 10%;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.para {
+  height: 10%;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 1rem;
 }

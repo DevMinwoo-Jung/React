@@ -15,6 +15,7 @@ const Editor = memo(({onAsc, onDesc, FileInput, records, onUpdate, addRecord, up
 
   return (
     <div className={styles.informations}>
+      <div className={styles.informations__header}>
         <span className={styles.textBox}>날짜
           <img className={styles.uploadIcon} src="/images/upload.png" alt="오름차순" onClick={goAsc} />
           <img className={styles.downLoadIcon} src="/images/download.png" alt="내림차순" onClick={goDesc} />
@@ -24,6 +25,7 @@ const Editor = memo(({onAsc, onDesc, FileInput, records, onUpdate, addRecord, up
         <span className={styles.textBox}>메모</span>
         <span className={styles.textBox}>사진첨부</span>
         <span className={styles.textBox}>추가/삭제</span>
+      </div>  
       <RecordAddForm FileInput={FileInput} onAdd={addRecord}/>  
       {
         Object.keys(records).map(key => (

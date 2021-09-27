@@ -81,7 +81,7 @@ const Summary = ({records ,dates}) => {
         (dates['start'] === '' & dates['end'] === '') ? 
         <div className={styles.summaryUpper}>
           <span>현재까지 지출 내역은</span><br/>
-          <span>---------------------------------------------------------------------------</span>
+          <div className={styles.dashed}/>
         </div>
         : null
       }
@@ -89,7 +89,7 @@ const Summary = ({records ,dates}) => {
         (dates['start'] !== '' || dates['end'] !== '') ? 
         <div className={styles.summaryUpper}>
           <span>{dates['start']} 부터 {dates['end']}까지 지출 내역은</span> <br/>
-          <span>---------------------------------------------------------------------------</span>
+          <div className={styles.dashed}/>
         </div>
         : null
       }
@@ -151,7 +151,7 @@ const Summary = ({records ,dates}) => {
           <br/>
           </>
         }
-        <span>---------------------------------------------------------------------------</span><br/>
+        <div className={styles.dashed__detail}/><br/>
         <span>총 지출: {totalCost}원</span>
         <br/>
         <span>가장 큰 지출: {maxCost}원</span>

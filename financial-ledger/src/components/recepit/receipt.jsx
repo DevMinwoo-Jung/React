@@ -12,16 +12,11 @@ const Receipt = memo(({record, showModal}) => {
   }
 
   return (
-    <>
-    {
-      url !== '' &&
         <div className={styles.receipt}>
-        <p>{date}</p>  
-        <img className={styles.receipt__img} src={url} alt="" onClick={goShow} />
-        <p>{etc}</p>
-      </div>
-    }
-    </>
+          <p className={styles.date}>{date}</p>  
+          <img className={styles.receipt__img} src={url} alt="" onClick={goShow} />
+          <p className={styles.para}>{etc}</p>
+        </div>
   );
 });
 

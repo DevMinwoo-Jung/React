@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Receipt from '../recepit/receipt';
 import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import styles from './receipts.module.css'
 import Modal from '../modal/modal';
+import uuid from 'react-uuid';
 
 const Receipts = ({records}) => {
 
@@ -17,22 +16,12 @@ const Receipts = ({records}) => {
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: true,
     speed: 2000,
-    autoplaySpeed: 2000,
-    
-
   };
   const length =   Object.keys(records)
   .map(key => records[key])
   .filter(record => record['fileURL'] !== '')
   .map(record => record);
-
-  // const goShow = (event) => {
-  //   event.preventDefault();
-  //   showModal(event);
-  // }
-
   
   const showModal = (event) => {
     setShow(true);
@@ -57,7 +46,7 @@ const Receipts = ({records}) => {
           Object.keys(records)
           .map(key => records[key])
           .filter(record => record['fileURL'] !== '')
-          .map(record => (<Receipt key={record['key']} record={record} showModal={showModal}/>))
+          .map(record => (<Receipt key={uuid()} record={record} showModal={showModal}/>))
       }
     </Slider>
     </div>

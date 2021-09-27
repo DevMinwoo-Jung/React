@@ -39,6 +39,19 @@
   display: block;
 }
 
+.dashed {
+  margin: 1rem 0 1rem 0;
+  border-width: 2px 0 0 0;
+  border-style: dashed;
+}
+
+.dashed__detail {
+  width: 80%;
+  margin: 1rem 0 5px 0;
+  border-width: 2px 0 0 0;
+  border-style: dashed;
+}
+
 @media screen and (max-width: laptop) {
   .summary {
     margin: auto;

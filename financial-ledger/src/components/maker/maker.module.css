@@ -12,7 +12,8 @@
 
 .editor {
   overflow-y: hidden;
-  border: 1px solid;
+  border-width: 1px 0 0 0;
+  border-style: solid;
   width: 100%;
 }
 

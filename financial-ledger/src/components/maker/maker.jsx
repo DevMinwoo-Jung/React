@@ -6,6 +6,7 @@ import Header from '../header/header';
 import Receipts from '../receipts/receipts';
 import Summary from '../summary/summary';
 import styles from './maker.module.css';
+import uuid from 'react-uuid';
 
 
 
@@ -67,14 +68,14 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     endRef = endRef.current.value;
     modifyDates(startRef, endRef);
     onUpdate(startRef, endRef);
-  }
+  };
 
   const modifyDates = (startRef, endRef) => {
     setDates({
       start: startRef,
       end: endRef,
     })
-  }
+  };
 
   const onResetDate = (event) => {
     event.preventDefault();
@@ -82,14 +83,16 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
     endRef = '';
     modifyDates(startRef, endRef);
     onUpdate(startRef, endRef);
-  }
+  };
 
   const onUpdate = (startRef, endRef) => {
+    setNewRecords({...orginalRecords});
+    
     setFirstRender(true);
-    setNewRecords(orginalRecords);
       if((startRef === '') & (endRef === '')){
         setNewRecords({...orginalRecords});
         setRecords(newRecords);
+
       } else if ((startRef !== '') & (endRef === '')){
         setNewRecords({...orginalRecords});
         for(let key in newRecords){
@@ -98,6 +101,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
           }
         }
         setRecords(newRecords);
+
       } else if ((startRef === '') & (endRef !== '')){
         setNewRecords({...orginalRecords});
         for(let key in newRecords){
@@ -106,6 +110,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
           }
         }
         setRecords(newRecords);
+
       } else if ((startRef !== '') & (endRef !== '')){
         setNewRecords({...orginalRecords});
         for(let key in newRecords){
@@ -114,7 +119,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
           }
         }
         setRecords(newRecords);
-    }
+      }
   }
 
   const createOrUpdateRecord = record => {
@@ -138,6 +143,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
 
   
   const onAsc = () => {
+    setNewRecords({...orginalRecords});
     setRecords(newRecords);
     setFirstRender(true);
     let sortRecords = Object.keys(records).map(key => records[key])
@@ -152,7 +158,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
       }
     }
     ).map(records => records);
-    let newKey = sortRecords.map(records =>  records['id']);
+    const newKey = sortRecords.map(records =>  records['id']);
     const myObj = {};
     for(let i=0; i<sortRecords.length;i++){
       if(sortRecords[i]['date'] === ''){
@@ -165,6 +171,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
   }
 
   const onDesc = () => {
+    setNewRecords({...orginalRecords});
     setRecords(newRecords);
     setFirstRender(true);
     let sortRecords = Object.keys(records).map(key => records[key])
@@ -179,7 +186,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
       }
     }
     ).map(records => records);
-    let newKey = sortRecords.map(records =>  records['id']);
+    const newKey = sortRecords.map(records =>  records['id']);
     const myObj = {};
 
     for(let i=0; i<sortRecords.length;i++){
@@ -200,7 +207,7 @@ const Maker = memo(({FileInput, authService, recordRepository }) => {
       <DateSearchForm onSubmit={onSubmit} startRef={startRef} endRef={endRef} onResetDate={onResetDate} />
     </div>
     <div className={styles.display}>
-      <Receipts records={records} key={Math.random()}/>
+      <Receipts records={records} key={uuid()}/>
       <Summary records={records} dates={dates} />
     </div>
     <div className={styles.editor}>
