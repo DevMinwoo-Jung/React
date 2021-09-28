@@ -1,3 +1,5 @@
+@value makerRed from '../../common/colors.css';
+
 .form {
   display: flex;
 }
@@ -9,4 +11,24 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
+}
+
+.required {
+  width: calc(100% / 6);
+  padding: 8px 20px;
+  display: inline-block;
+  border: 1px solid makerRed;
+  background-color: makerRed;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
+}
+
+.showModal {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.none {
+  opacity: 0;
 }

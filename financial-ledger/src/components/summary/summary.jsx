@@ -88,7 +88,7 @@ const Summary = ({records ,dates}) => {
       {
         (dates['start'] !== '' || dates['end'] !== '') ? 
         <div className={styles.summaryUpper}>
-          <span>{dates['start']} 부터 {dates['end']}까지 지출 내역은</span> <br/>
+          <span>{dates['start'] && `${dates['start']} 부터`} {dates['end'] !== '' && `${dates['end']} 까지`} 지출 내역은</span> <br/>
           <div className={styles.dashed}/>
         </div>
         : null

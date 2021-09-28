@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import ValidModal from '../validModal/validModal';
 import Button from '../button/button';
 import styles from './record_add_form.module.css';
 
@@ -9,34 +10,56 @@ const RecordAddForm = ({FileInput, onAdd}) => {
   const categoryRef = useRef();
   const etcRef = useRef();
   const [file, setFile] = useState({fileName: null, fileURL: null});
+  const [required, setRequired] = useState();
+  const [show, setShow] = useState(false);
 
   const onSubmit = event => {
     event.preventDefault();
     const record = {
       id: Date.now(),
-      date: dateRef.current.value || '',
+      date: dateRef.current.value,
       cost: costRef.current.value || '',
       category: categoryRef.current.value || '',
       etc: etcRef.current.value || '',
       fileName: file.fileName || '',
       fileURL: file.fileURL || '',
     };
+    if(record.date === ''){
+      setRequired(true);
+      setShow(true);
+      return;
+    } 
     formRef.current.reset();
     setFile({ fileName: null, fileURL: null, });
     onAdd(record);
-  }
+  };
+
+  const onRequestClose = () => {
+    setShow(false);
+    setRequired(false);
+  };
+
+  useEffect(()=>{
+    setTimeout(() => setRequired(false), 10000);
+    setTimeout(() => setShow(false), 10000);
+  },[required,show]);
 
   const onFileChange = file => {
     setFile({
           fileName: file.name,
           fileURL: file.url,
     });
-};
+  };
 
 
   return (
       <form className={styles.form} ref={formRef}>
-        <input className={styles.inputs} ref={dateRef} type="date" name="date"/>
+        <div className={show === true ? styles.showModal : styles.none}>
+        {
+          show === true ? <ValidModal onRequestClose={onRequestClose}/> : null
+        }
+        </div>
+        <input className={required === true ? styles.required : styles.inputs} ref={dateRef} type="date" name="date"/>
         <input className={styles.inputs} ref={costRef} type="number" name="cost" />
         <select ref={categoryRef}className={styles.inputs} name="theme" >
                         <option value=""></option>
@@ -51,7 +74,7 @@ const RecordAddForm = ({FileInput, onAdd}) => {
         </select>
         <input className={styles.inputs} ref={etcRef} type="text" name="etc"/>
       <FileInput name={file.fileName} onFileChange={onFileChange}/>
-      <Button name="추가" onClick={onSubmit}/>
+      <Button name="추가" onClick={onSubmit} />
       </form>
   );
 };

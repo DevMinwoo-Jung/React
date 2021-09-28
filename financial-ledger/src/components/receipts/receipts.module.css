@@ -10,11 +10,6 @@
   margin-left: 2rem;
 }
 
-.slick-prev:before,
-.slick-next:before {
-  color: #881798;
-}
-
 @media screen and (max-width: laptop) {
   .receipts {
     margin: auto;
