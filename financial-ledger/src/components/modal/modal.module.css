@@ -9,6 +9,7 @@
   z-index: 1;
   border: 1px solid black;
   border-radius: 5%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: laptop) {
@@ -21,5 +22,6 @@
     z-index: 1;
     border: 1px solid black;
     border-radius: 5%;
+    cursor: pointer;
   }
 }

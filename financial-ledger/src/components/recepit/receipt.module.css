@@ -16,6 +16,7 @@
   width: 13rem;
   height: 11rem;
   border-radius: 5%;
+  cursor: pointer;
 }
 
 .date {

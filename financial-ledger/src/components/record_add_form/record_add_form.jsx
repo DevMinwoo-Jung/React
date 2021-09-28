@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ValidModal from '../validModal/validModal';
 import Button from '../button/button';
 import styles from './record_add_form.module.css';
@@ -38,11 +38,6 @@ const RecordAddForm = ({FileInput, onAdd}) => {
     setShow(false);
     setRequired(false);
   };
-
-  useEffect(()=>{
-    setTimeout(() => setRequired(false), 10000);
-    setTimeout(() => setShow(false), 10000);
-  },[required,show]);
 
   const onFileChange = file => {
     setFile({
