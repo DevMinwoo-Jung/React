@@ -43,7 +43,7 @@ const Receipts = ({records}) => {
 
   const onRequestClose = () => {
     setShow(false);
-  }
+  };
 
   
 

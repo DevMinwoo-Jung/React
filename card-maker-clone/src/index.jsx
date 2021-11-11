@@ -13,6 +13,12 @@ const cardRepository = new CardRepository();
 const FileInput = memo(props => (
   <ImageFileInput {...props} imageUploader={imageUploader}/>
 ));
+// 컴포넌트 prop인 경우에는 대문자로 전달한다.
+// 그리고 이렇게 외부에서 component를 injection 하는 것은
+// 확장성을 위한 것이다.
+// 장점으로는 쓸데없이 많은 서비스 
+// (예를 들면 youtube, instagram, twiter등을 계속해서 props로 주입하지 않아도 된다)
+
 
 ReactDOM.render(
   <React.StrictMode>
